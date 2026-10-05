@@ -1,0 +1,1058 @@
+{
+  "format": "SceneIR",
+  "version": "0.5",
+  "levelId": "level_002",
+  "label": 1,
+  "objects": [
+    {
+      "id": 0,
+      "name": "THE RECTANGLE PRIMO",
+      "tag": "Structure2",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": 29.2207,
+          "y": 0.5,
+          "z": -7.35364342
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 2.809,
+          "y": 1.0,
+          "z": 4.0336
+        }
+      },
+      "boundsSize": {
+        "x": 2.809,
+        "y": 1.0,
+        "z": 4.0336
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "BoxCollider"
+      ],
+      "mesh": "Cube",
+      "materials": [
+        "Amarillo"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "THE CUBE",
+      "tag": "Structure1",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": 12.0807009,
+          "y": 0.5,
+          "z": -5.4511013
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "BoxCollider"
+      ],
+      "mesh": "Cube",
+      "materials": [
+        "Lit"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Estructura Alta",
+      "tag": "Structure3",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": 14.4707,
+          "y": 2.1893003,
+          "z": 4.3375473
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 2.4007,
+          "y": 4.3786,
+          "z": 6.277838
+        }
+      },
+      "boundsSize": {
+        "x": 2.4007,
+        "y": 4.3786,
+        "z": 6.277838
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "BoxCollider"
+      ],
+      "mesh": "Cube",
+      "materials": [
+        "Lit"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Roca",
+      "tag": "Rocks",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": 2.94900036,
+          "y": 0.25,
+          "z": -3.24329
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.5
+        }
+      },
+      "boundsSize": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "BoxCollider"
+      ],
+      "mesh": "Cube",
+      "materials": [
+        "Blanco"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Enemigo",
+      "tag": "Enemy",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": 0.7399998,
+          "y": 1.0,
+          "z": -1.25110054
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "boundsSize": {
+        "x": 1.00000012,
+        "y": 2.0,
+        "z": 1.00000024
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "CapsuleCollider"
+      ],
+      "mesh": "Cylinder",
+      "materials": [
+        "Rojo"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Arbol",
+      "tag": "Tree",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": 4.03069973,
+          "y": 5.0,
+          "z": 0.62635994
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 5.0,
+          "z": 1.0
+        }
+      },
+      "boundsSize": {
+        "x": 1.00000012,
+        "y": 10.0,
+        "z": 1.00000024
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "CapsuleCollider"
+      ],
+      "mesh": "Cylinder",
+      "materials": [
+        "Verde"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Arbol (1)",
+      "tag": "Tree",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": 1.16384029,
+          "y": 5.0,
+          "z": 3.08889961
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 5.0,
+          "z": 1.0
+        }
+      },
+      "boundsSize": {
+        "x": 1.00000012,
+        "y": 10.0,
+        "z": 1.00000024
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "CapsuleCollider"
+      ],
+      "mesh": "Cylinder",
+      "materials": [
+        "Verde"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Arbol",
+      "tag": "Tree",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": -1.98999977,
+          "y": 5.0,
+          "z": 0.62635994
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 5.0,
+          "z": 1.0
+        }
+      },
+      "boundsSize": {
+        "x": 1.00000012,
+        "y": 10.0,
+        "z": 1.00000024
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "CapsuleCollider"
+      ],
+      "mesh": "Cylinder",
+      "materials": [
+        "Verde"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Arbol (2)",
+      "tag": "Tree",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": 0.990699768,
+          "y": 5.0,
+          "z": 21.7888985
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 5.0,
+          "z": 1.0
+        }
+      },
+      "boundsSize": {
+        "x": 1.00000012,
+        "y": 10.0,
+        "z": 1.00000024
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "CapsuleCollider"
+      ],
+      "mesh": "Cylinder",
+      "materials": [
+        "Verde"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Chest",
+      "tag": "Chest",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": -2.89140034,
+          "y": 0.5,
+          "z": 21.3445
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "BoxCollider"
+      ],
+      "mesh": "Cube",
+      "materials": [
+        "Marron"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "ArmorStand",
+      "tag": "ArmorStand",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": -2.14410019,
+          "y": 1.5103,
+          "z": 30.66349
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 0.5492,
+          "y": 3.0206,
+          "z": 1.0
+        }
+      },
+      "boundsSize": {
+        "x": 0.5492,
+        "y": 3.0206,
+        "z": 1.0
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "BoxCollider"
+      ],
+      "mesh": "Cube",
+      "materials": [
+        "Marron"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Caja",
+      "tag": "Crate",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": -1.39319992,
+          "y": 1.0,
+          "z": -4.6511
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 2.0,
+          "y": 2.0,
+          "z": 2.0
+        }
+      },
+      "boundsSize": {
+        "x": 2.0,
+        "y": 2.0,
+        "z": 2.0
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "BoxCollider"
+      ],
+      "mesh": "Cube",
+      "materials": [
+        "MarronClaro"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Puentes",
+      "tag": "Untagged",
+      "layer": 0,
+      "parentId": -1,
+      "children": [],
+      "transform": {
+        "position": {
+          "x": -13.0393,
+          "y": 0.9332,
+          "z": 16.3189
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 10.6644,
+          "y": 0.414365083,
+          "z": 1.9981
+        }
+      },
+      "boundsSize": {
+        "x": 10.6644,
+        "y": 0.414365083,
+        "z": 1.9981
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "MeshRenderer",
+        "BoxCollider"
+      ],
+      "mesh": "Cube",
+      "materials": [
+        "MarronClaro"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "sourceId": 0,
+      "targetId": 1,
+      "relation": 2,
+      "value": 0.06083403
+    },
+    {
+      "sourceId": 0,
+      "targetId": 2,
+      "relation": 2,
+      "value": 0.0609243251
+    },
+    {
+      "sourceId": 0,
+      "targetId": 3,
+      "relation": 2,
+      "value": 0.0384092852
+    },
+    {
+      "sourceId": 0,
+      "targetId": 4,
+      "relation": 2,
+      "value": 0.0355142877
+    },
+    {
+      "sourceId": 0,
+      "targetId": 5,
+      "relation": 2,
+      "value": 0.0408211164
+    },
+    {
+      "sourceId": 0,
+      "targetId": 6,
+      "relation": 2,
+      "value": 0.03575721
+    },
+    {
+      "sourceId": 0,
+      "targetId": 7,
+      "relation": 2,
+      "value": 0.03309023
+    },
+    {
+      "sourceId": 0,
+      "targetId": 8,
+      "relation": 2,
+      "value": 0.02596369
+    },
+    {
+      "sourceId": 0,
+      "targetId": 9,
+      "relation": 2,
+      "value": 0.02366307
+    },
+    {
+      "sourceId": 0,
+      "targetId": 10,
+      "relation": 2,
+      "value": 0.0207352526
+    },
+    {
+      "sourceId": 0,
+      "targetId": 11,
+      "relation": 2,
+      "value": 0.0339790247
+    },
+    {
+      "sourceId": 0,
+      "targetId": 12,
+      "relation": 2,
+      "value": 0.0217609163
+    },
+    {
+      "sourceId": 1,
+      "targetId": 2,
+      "relation": 2,
+      "value": 0.117087327
+    },
+    {
+      "sourceId": 1,
+      "targetId": 3,
+      "relation": 2,
+      "value": 0.103647
+    },
+    {
+      "sourceId": 1,
+      "targetId": 4,
+      "relation": 2,
+      "value": 0.08377235
+    },
+    {
+      "sourceId": 1,
+      "targetId": 5,
+      "relation": 2,
+      "value": 0.104768872
+    },
+    {
+      "sourceId": 1,
+      "targetId": 6,
+      "relation": 2,
+      "value": 0.07649612
+    },
+    {
+      "sourceId": 1,
+      "targetId": 7,
+      "relation": 2,
+      "value": 0.06908918
+    },
+    {
+      "sourceId": 1,
+      "targetId": 8,
+      "relation": 2,
+      "value": 0.0353941619
+    },
+    {
+      "sourceId": 1,
+      "targetId": 9,
+      "relation": 2,
+      "value": 0.0325788558
+    },
+    {
+      "sourceId": 1,
+      "targetId": 10,
+      "relation": 2,
+      "value": 0.0259291921
+    },
+    {
+      "sourceId": 1,
+      "targetId": 11,
+      "relation": 2,
+      "value": 0.07688235
+    },
+    {
+      "sourceId": 1,
+      "targetId": 12,
+      "relation": 2,
+      "value": 0.0316815674
+    },
+    {
+      "sourceId": 2,
+      "targetId": 3,
+      "relation": 2,
+      "value": 0.0799906254
+    },
+    {
+      "sourceId": 2,
+      "targetId": 4,
+      "relation": 2,
+      "value": 0.07675039
+    },
+    {
+      "sourceId": 2,
+      "targetId": 5,
+      "relation": 2,
+      "value": 0.121142253
+    },
+    {
+      "sourceId": 2,
+      "targetId": 6,
+      "relation": 2,
+      "value": 0.09540646
+    },
+    {
+      "sourceId": 2,
+      "targetId": 7,
+      "relation": 2,
+      "value": 0.07178662
+    },
+    {
+      "sourceId": 2,
+      "targetId": 8,
+      "relation": 2,
+      "value": 0.0524837337
+    },
+    {
+      "sourceId": 2,
+      "targetId": 9,
+      "relation": 2,
+      "value": 0.0440793969
+    },
+    {
+      "sourceId": 2,
+      "targetId": 10,
+      "relation": 2,
+      "value": 0.0342465043
+    },
+    {
+      "sourceId": 2,
+      "targetId": 11,
+      "relation": 2,
+      "value": 0.06212717
+    },
+    {
+      "sourceId": 2,
+      "targetId": 12,
+      "relation": 2,
+      "value": 0.0374861881
+    },
+    {
+      "sourceId": 3,
+      "targetId": 4,
+      "relation": 2,
+      "value": 0.317352623
+    },
+    {
+      "sourceId": 3,
+      "targetId": 4,
+      "relation": 6,
+      "value": 1.0
+    },
+    {
+      "sourceId": 3,
+      "targetId": 5,
+      "relation": 2,
+      "value": 0.2011475
+    },
+    {
+      "sourceId": 3,
+      "targetId": 6,
+      "relation": 2,
+      "value": 0.145675957
+    },
+    {
+      "sourceId": 3,
+      "targetId": 7,
+      "relation": 2,
+      "value": 0.15106681
+    },
+    {
+      "sourceId": 3,
+      "targetId": 7,
+      "relation": 6,
+      "value": 1.0
+    },
+    {
+      "sourceId": 3,
+      "targetId": 8,
+      "relation": 2,
+      "value": 0.04114546
+    },
+    {
+      "sourceId": 3,
+      "targetId": 9,
+      "relation": 2,
+      "value": 0.0391801149
+    },
+    {
+      "sourceId": 3,
+      "targetId": 10,
+      "relation": 2,
+      "value": 0.0291556418
+    },
+    {
+      "sourceId": 3,
+      "targetId": 11,
+      "relation": 2,
+      "value": 0.228523389
+    },
+    {
+      "sourceId": 3,
+      "targetId": 11,
+      "relation": 6,
+      "value": 1.0
+    },
+    {
+      "sourceId": 3,
+      "targetId": 12,
+      "relation": 2,
+      "value": 0.04193847
+    },
+    {
+      "sourceId": 4,
+      "targetId": 5,
+      "relation": 2,
+      "value": 0.260231
+    },
+    {
+      "sourceId": 4,
+      "targetId": 5,
+      "relation": 5,
+      "value": 1.0
+    },
+    {
+      "sourceId": 4,
+      "targetId": 6,
+      "relation": 2,
+      "value": 0.2352553
+    },
+    {
+      "sourceId": 4,
+      "targetId": 7,
+      "relation": 2,
+      "value": 0.2834994
+    },
+    {
+      "sourceId": 4,
+      "targetId": 7,
+      "relation": 6,
+      "value": 1.0
+    },
+    {
+      "sourceId": 4,
+      "targetId": 8,
+      "relation": 2,
+      "value": 0.04604195
+    },
+    {
+      "sourceId": 4,
+      "targetId": 9,
+      "relation": 2,
+      "value": 0.0440056734
+    },
+    {
+      "sourceId": 4,
+      "targetId": 10,
+      "relation": 2,
+      "value": 0.0316251479
+    },
+    {
+      "sourceId": 4,
+      "targetId": 11,
+      "relation": 2,
+      "value": 0.298763722
+    },
+    {
+      "sourceId": 4,
+      "targetId": 11,
+      "relation": 6,
+      "value": 1.0
+    },
+    {
+      "sourceId": 4,
+      "targetId": 12,
+      "relation": 2,
+      "value": 0.0488216244
+    },
+    {
+      "sourceId": 5,
+      "targetId": 6,
+      "relation": 2,
+      "value": 1.0
+    },
+    {
+      "sourceId": 5,
+      "targetId": 6,
+      "relation": 6,
+      "value": 1.0
+    },
+    {
+      "sourceId": 5,
+      "targetId": 7,
+      "relation": 2,
+      "value": 0.331049144
+    },
+    {
+      "sourceId": 5,
+      "targetId": 7,
+      "relation": 6,
+      "value": 1.0
+    },
+    {
+      "sourceId": 5,
+      "targetId": 8,
+      "relation": 2,
+      "value": 0.0544076376
+    },
+    {
+      "sourceId": 5,
+      "targetId": 9,
+      "relation": 2,
+      "value": 0.0480708741
+    },
+    {
+      "sourceId": 5,
+      "targetId": 10,
+      "relation": 2,
+      "value": 0.0343624465
+    },
+    {
+      "sourceId": 5,
+      "targetId": 11,
+      "relation": 2,
+      "value": 0.152443543
+    },
+    {
+      "sourceId": 5,
+      "targetId": 12,
+      "relation": 2,
+      "value": 0.0491121933
+    },
+    {
+      "sourceId": 6,
+      "targetId": 7,
+      "relation": 2,
+      "value": 0.998650968
+    },
+    {
+      "sourceId": 6,
+      "targetId": 7,
+      "relation": 6,
+      "value": 1.0
+    },
+    {
+      "sourceId": 6,
+      "targetId": 8,
+      "relation": 2,
+      "value": 0.06369102
+    },
+    {
+      "sourceId": 6,
+      "targetId": 9,
+      "relation": 2,
+      "value": 0.0563876033
+    },
+    {
+      "sourceId": 6,
+      "targetId": 10,
+      "relation": 2,
+      "value": 0.03812566
+    },
+    {
+      "sourceId": 6,
+      "targetId": 11,
+      "relation": 2,
+      "value": 0.141243324
+    },
+    {
+      "sourceId": 6,
+      "targetId": 12,
+      "relation": 2,
+      "value": 0.0600516275
+    },
+    {
+      "sourceId": 7,
+      "targetId": 8,
+      "relation": 2,
+      "value": 0.0544323735
+    },
+    {
+      "sourceId": 7,
+      "targetId": 9,
+      "relation": 2,
+      "value": 0.0507090054
+    },
+    {
+      "sourceId": 7,
+      "targetId": 10,
+      "relation": 2,
+      "value": 0.0351149179
+    },
+    {
+      "sourceId": 7,
+      "targetId": 11,
+      "relation": 2,
+      "value": 0.215105042
+    },
+    {
+      "sourceId": 7,
+      "targetId": 12,
+      "relation": 2,
+      "value": 0.06083123
+    },
+    {
+      "sourceId": 8,
+      "targetId": 9,
+      "relation": 2,
+      "value": 0.224229634
+    },
+    {
+      "sourceId": 8,
+      "targetId": 9,
+      "relation": 6,
+      "value": 1.0
+    },
+    {
+      "sourceId": 8,
+      "targetId": 10,
+      "relation": 2,
+      "value": 0.120824575
+    },
+    {
+      "sourceId": 8,
+      "targetId": 11,
+      "relation": 2,
+      "value": 0.0402464569
+    },
+    {
+      "sourceId": 8,
+      "targetId": 12,
+      "relation": 2,
+      "value": 0.08052424
+    },
+    {
+      "sourceId": 9,
+      "targetId": 10,
+      "relation": 2,
+      "value": 0.109388791
+    },
+    {
+      "sourceId": 9,
+      "targetId": 11,
+      "relation": 2,
+      "value": 0.0391488448
+    },
+    {
+      "sourceId": 9,
+      "targetId": 12,
+      "relation": 2,
+      "value": 0.103595138
+    },
+    {
+      "sourceId": 10,
+      "targetId": 11,
+      "relation": 2,
+      "value": 0.0289313141
+    },
+    {
+      "sourceId": 10,
+      "targetId": 12,
+      "relation": 2,
+      "value": 0.062184196
+    },
+    {
+      "sourceId": 11,
+      "targetId": 12,
+      "relation": 2,
+      "value": 0.0458557
+    }
+  ]
+}
