@@ -7,35 +7,37 @@ using System.Collections.Generic;
 ///   La distancia se corrige por tamaño: se le resta a la distancia centro-a-centro
 ///   un radio aproximado por objeto (derivado de su boundsSize), para que objetos
 ///   grandes (atalayas, estructuras) no se midan como "lejos" solo por tener el
-///   pivote en el centro. Sin esto, un prop pegado a la base de una torre grande
-///   podía marcar como far_from solo por la distancia al centro de la torre.
-/// - Above/Below y LeftOf/RightOf: ejes del MUNDO (Y y X). Corregidos por tamaño
-///   (igual que Near) Y ahora con un límite MÁXIMO de distancia — antes se
-///   disparaban sin importar qué tan lejos estuvieran los objetos, lo que hacía
-///   que relaciones como RightOf aparecieran en la enorme mayoría de los pares
-///   de un nivel grande, sin aportar información real de composición espacial.
-/// - InFrontOf/Behind: solo objetos con tag marcado como orientable — la lista
-///   de tags queda VACÍA a propósito, complétala tú mismo abajo.
+///   pivote en el centro.
+/// - Above/Below: significan "APILADO". A está Above de B cuando las caras de
+///   ambos se tocan en vertical (con tolerancia) Y sus huellas en el plano XZ se
+///   solapan, o sea, uno realmente descansa sobre el otro. Usa el centro REAL de
+///   la caja (boundsCenter), no el pivote. Un objeto más alto pero desplazado a un
+///   lado, o flotando lejos, ya NO genera Above.
+/// - LeftOf/RightOf: ejes del MUNDO (X). Corregidos por tamaño y con un límite
+///   MÁXIMO de distancia (AxisMaxDistance), para que no se disparen entre objetos
+///   en puntas opuestas de un nivel grande.
+/// - InFrontOf/Behind: para CUALQUIER objeto, usando su propia rotación
+///   (forward geométrico). Todo objeto tiene una "cara frontal" técnica,
+///   aunque no tenga un frente semántico obvio (un árbol también cuenta) —
+///   no hay filtro por tag.
 /// </summary>
 public class SpatialRelationBuilder : IRelationBuilder
 {
-    public static float VerticalThreshold = 0.5f;
-    public static float HorizontalThreshold = 0.5f;
+    // Above/Below (apilado):
+    // StackContactTolerance: separación máxima entre la cara de arriba de uno y la
+    //   de abajo del otro para seguir contando como "en contacto".
+    // StackPenetrationTolerance: cuánto puede estar hundido uno en el otro (una
+    //   roca a medio enterrar en el suelo, un árbol clavado en un plano de agua).
+    // FootprintMinOverlap: solape mínimo en X y en Z para que cuente como apoyado.
+    public static float StackContactTolerance = 0.2f;
+    public static float StackPenetrationTolerance = 0.3f;
+    public static float FootprintMinOverlap = 0.05f;
 
-    // NUEVO: límite máximo de distancia para Above/Below/LeftOf/RightOf.
-    // Antes no existía — por eso una estructura en una punta del mapa y otra
-    // en la otra punta igual se marcaban RightOf entre sí.
+    public static float HorizontalThreshold = 0.5f;
     public static float AxisMaxDistance = 8f;
 
     public static float OrientationConeAngle = 45f;
     public static float OrientationMaxDistance = 6f;
-
-    // Vacía a propósito -- completa aquí los tags de tus objetos orientables
-    // (ej. "Cabin", "Bridge", "Stairs"...).
-    private static readonly HashSet<string> OrientedTags = new()
-    {
-        "Structure1","Structure2","Structure3","Structure4", "Bridge", "Rocks", "Crate", "ArmorStand", "Tree", "Chest", "Enemy"
-    };
 
     public void Build(SceneIR scene)
     {
@@ -59,16 +61,34 @@ public class SpatialRelationBuilder : IRelationBuilder
                 float radiusA = BoundingRadius(a);
                 float radiusB = BoundingRadius(b);
                 float surfaceDistance = centerDistance - radiusA - radiusB;
-                if (surfaceDistance < 0f) surfaceDistance = 0f; // objetos que se solapan/tocan
+                if (surfaceDistance < 0f) surfaceDistance = 0f;
 
                 float proximity = 1f / (1f + surfaceDistance);
                 scene.relations.Add(Make(a.id, b.id, RelationType.Near, proximity));
 
-                // --- Above / Below (eje mundial Y, corregido por altura, con límite de distancia) ---
-                float verticalGap = Abs(dy) - (a.boundsSize.y / 2f + b.boundsSize.y / 2f);
-                if (verticalGap > VerticalThreshold && centerDistance <= AxisMaxDistance)
+                // --- Above / Below: APILADO (contacto vertical + huellas solapadas) ---
+                float cdx = a.boundsCenter.x - b.boundsCenter.x;
+                float cdy = a.boundsCenter.y - b.boundsCenter.y;
+                float cdz = a.boundsCenter.z - b.boundsCenter.z;
+
+                // Espacio libre entre las caras (negativo = se solapan en vertical).
+                float stackGap = Abs(cdy) - (a.boundsSize.y / 2f + b.boundsSize.y / 2f);
+
+                // Solape de las huellas en X y en Z (positivo = se solapan).
+                float overlapX = (a.boundsSize.x + b.boundsSize.x) / 2f - Abs(cdx);
+                float overlapZ = (a.boundsSize.z + b.boundsSize.z) / 2f - Abs(cdz);
+
+                bool touchingVertically =
+                    stackGap <= StackContactTolerance &&
+                    stackGap >= -StackPenetrationTolerance;
+
+                bool footprintsOverlap =
+                    overlapX > FootprintMinOverlap &&
+                    overlapZ > FootprintMinOverlap;
+
+                if (touchingVertically && footprintsOverlap)
                 {
-                    if (dy > 0f)
+                    if (cdy > 0f)
                         scene.relations.Add(Make(a.id, b.id, RelationType.Above, 1f));
                     else
                         scene.relations.Add(Make(a.id, b.id, RelationType.Below, 1f));
@@ -84,15 +104,11 @@ public class SpatialRelationBuilder : IRelationBuilder
                         scene.relations.Add(Make(a.id, b.id, RelationType.LeftOf, 1f));
                 }
 
-                // --- In front of / Behind (solo si el ORIGEN es orientable) ---
-                if (OrientedTags.Contains(a.tag) && centerDistance <= OrientationMaxDistance)
+                // --- In front of / Behind: CUALQUIER objeto, usando su propia rotación ---
+                if (centerDistance <= OrientationMaxDistance)
                 {
-                    TryAddDirectional(scene, a, b.id, -dx, -dz);
-                }
-
-                if (OrientedTags.Contains(b.tag) && centerDistance <= OrientationMaxDistance)
-                {
-                    TryAddDirectional(scene, b, a.id, dx, dz);
+                    TryAddDirectional(scene, a, b.id, -dx, -dz); // desde el forward de a, hacia b
+                    TryAddDirectional(scene, b, a.id, dx, dz);   // desde el forward de b, hacia a
                 }
             }
         }

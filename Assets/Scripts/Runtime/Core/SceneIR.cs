@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class SceneIR
 {
     public string format = "SceneIR";
-    public string version = "0.5";
+    public string version = "0.6";
 
     // NUEVO: identidad y etiqueta manual del nivel completo (no de un objeto).
     // label: -1 = sin evaluar, 1 = aceptable, 0 = no aceptable.
@@ -38,6 +38,13 @@ public class SceneObjectIR
     // Queda en (0,0,0) si el objeto no tiene Renderer/Collider -- se trata
     // como punto sin volumen en ese caso (comportamiento anterior).
     public Vector3IR boundsSize = new();
+
+    // NUEVO: centro REAL de la caja delimitadora en mundo (Renderer.bounds.center).
+    // Distinto de transform.position: si el pivote del prefab está en la base y no
+    // en el centro, position y boundsCenter no coinciden. Above/Below lo usa para
+    // saber dónde están realmente las caras superior e inferior de cada objeto.
+    // Si no hay Renderer/Collider, queda igual a transform.position (sin volumen).
+    public Vector3IR boundsCenter = new();
 
     public List<string> components = new();
 

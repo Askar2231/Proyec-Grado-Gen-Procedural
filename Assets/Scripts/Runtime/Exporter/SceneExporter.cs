@@ -67,6 +67,9 @@ public static class SceneExporter
         // si tampoco, queda en (0,0,0) -- se trata como punto, igual que antes.
         obj.boundsSize = GetBoundsSize(tr);
 
+        // NUEVO: centro real de la caja (no el pivote), para Above/Below.
+        obj.boundsCenter = GetBoundsCenter(tr);
+
         foreach (Component c in tr.GetComponents<Component>())
         {
             obj.components.Add(c.GetType().Name);
@@ -115,6 +118,24 @@ public static class SceneExporter
         }
 
         return new Vector3IR(0f, 0f, 0f);
+    }
+
+    private static Vector3IR GetBoundsCenter(Transform tr)
+    {
+        Renderer renderer = tr.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            return ToVector3IR(renderer.bounds.center);
+        }
+
+        Collider collider = tr.GetComponent<Collider>();
+        if (collider != null)
+        {
+            return ToVector3IR(collider.bounds.center);
+        }
+
+        // Sin volumen: el "centro" es la posición del objeto.
+        return ToVector3IR(tr.position);
     }
 
     private static Vector3IR ToVector3IR(Vector3 v)
