@@ -3,23 +3,21 @@ using System.Collections.Generic;
 /// <summary>
 /// Calcula las relaciones espaciales entre TODOS los pares de objetos de un nivel.
 ///
-/// - Near: valor continuo de cercanía (1/(1+distancia_de_superficie), en 0..1).
-///   La distancia se corrige por tamaño: se le resta a la distancia centro-a-centro
-///   un radio aproximado por objeto (derivado de su boundsSize), para que objetos
-///   grandes (atalayas, estructuras) no se midan como "lejos" solo por tener el
-///   pivote en el centro.
+/// Todas las medidas salen del centro REAL de la caja (boundsCenter) y de su
+/// tamaño (boundsSize), no del pivote. La distancia entre dos objetos es el
+/// HUECO entre sus cajas (surfaceDistance): 0 si se tocan o se solapan, sin
+/// importar qué tan grandes sean. Así un cubo pegado al borde de un plano de
+/// agua de 20 unidades mide igual que dos cubos pequeños pegados.
+///
+/// - Near: 1/(1 + surfaceDistance), en 0..1. Se calcula para todos los pares.
 /// - Above/Below: significan "APILADO". A está Above de B cuando las caras de
 ///   ambos se tocan en vertical (con tolerancia) Y sus huellas en el plano XZ se
-///   solapan, o sea, uno realmente descansa sobre el otro. Usa el centro REAL de
-///   la caja (boundsCenter), no el pivote. Un objeto más alto pero desplazado a un
-///   lado, o flotando lejos, ya NO genera Above.
-/// - LeftOf/RightOf: ejes del MUNDO (X). Corregidos por tamaño y con un límite
-///   MÁXIMO de distancia (AxisMaxDistance), para que no se disparen entre objetos
-///   en puntas opuestas de un nivel grande.
-/// - InFrontOf/Behind: para CUALQUIER objeto, usando su propia rotación
-///   (forward geométrico). Todo objeto tiene una "cara frontal" técnica,
-///   aunque no tenga un frente semántico obvio (un árbol también cuenta) —
-///   no hay filtro por tag.
+///   solapan, o sea, uno realmente descansa sobre el otro.
+/// - LeftOf/RightOf: eje X del mundo. Requiere un hueco mínimo en X
+///   (HorizontalThreshold) y que surfaceDistance no pase de AxisMaxDistance.
+/// - InFrontOf/Behind: para CUALQUIER objeto, usando su propia rotación en Y
+///   (forward geométrico), dentro de OrientationMaxDistance de hueco entre cajas.
+///   No hay filtro por tag.
 /// </summary>
 public class SpatialRelationBuilder : IRelationBuilder
 {
@@ -33,11 +31,13 @@ public class SpatialRelationBuilder : IRelationBuilder
     public static float StackPenetrationTolerance = 0.3f;
     public static float FootprintMinOverlap = 0.05f;
 
+    // LeftOf/RightOf:
     public static float HorizontalThreshold = 0.5f;
-    public static float AxisMaxDistance = 8f;
+    public static float AxisMaxDistance = 8f;       // medido como hueco entre cajas
 
+    // InFrontOf/Behind:
     public static float OrientationConeAngle = 45f;
-    public static float OrientationMaxDistance = 6f;
+    public static float OrientationMaxDistance = 6f; // medido como hueco entre cajas
 
     public void Build(SceneIR scene)
     {
@@ -51,32 +51,31 @@ public class SpatialRelationBuilder : IRelationBuilder
             {
                 var b = objects[j];
 
-                float dx = a.transform.position.x - b.transform.position.x;
-                float dy = a.transform.position.y - b.transform.position.y;
-                float dz = a.transform.position.z - b.transform.position.z;
-
-                float centerDistance = Sqrt(dx * dx + dy * dy + dz * dz);
-
-                // --- Near: corregido por tamaño (distancia de superficie aproximada) ---
-                float radiusA = BoundingRadius(a);
-                float radiusB = BoundingRadius(b);
-                float surfaceDistance = centerDistance - radiusA - radiusB;
-                if (surfaceDistance < 0f) surfaceDistance = 0f;
-
-                float proximity = 1f / (1f + surfaceDistance);
-                scene.relations.Add(Make(a.id, b.id, RelationType.Near, proximity));
-
-                // --- Above / Below: APILADO (contacto vertical + huellas solapadas) ---
+                // Diferencia entre los centros reales de las cajas.
                 float cdx = a.boundsCenter.x - b.boundsCenter.x;
                 float cdy = a.boundsCenter.y - b.boundsCenter.y;
                 float cdz = a.boundsCenter.z - b.boundsCenter.z;
 
-                // Espacio libre entre las caras (negativo = se solapan en vertical).
-                float stackGap = Abs(cdy) - (a.boundsSize.y / 2f + b.boundsSize.y / 2f);
+                // Suma de semitamaños por eje: a esta distancia entre centros las
+                // cajas quedan justo tocándose en ese eje.
+                float halfSumX = (a.boundsSize.x + b.boundsSize.x) / 2f;
+                float halfSumY = (a.boundsSize.y + b.boundsSize.y) / 2f;
+                float halfSumZ = (a.boundsSize.z + b.boundsSize.z) / 2f;
 
-                // Solape de las huellas en X y en Z (positivo = se solapan).
-                float overlapX = (a.boundsSize.x + b.boundsSize.x) / 2f - Abs(cdx);
-                float overlapZ = (a.boundsSize.z + b.boundsSize.z) / 2f - Abs(cdz);
+                // Hueco entre cajas por eje (0 si se solapan en ese eje) y total.
+                float gapX = NonNegative(Abs(cdx) - halfSumX);
+                float gapY = NonNegative(Abs(cdy) - halfSumY);
+                float gapZ = NonNegative(Abs(cdz) - halfSumZ);
+                float surfaceDistance = Sqrt(gapX * gapX + gapY * gapY + gapZ * gapZ);
+
+                // --- Near: siempre presente, como valor continuo ---
+                float proximity = 1f / (1f + surfaceDistance);
+                scene.relations.Add(Make(a.id, b.id, RelationType.Near, proximity));
+
+                // --- Above / Below: APILADO (contacto vertical + huellas solapadas) ---
+                float stackGap = Abs(cdy) - halfSumY;   // negativo = se solapan en vertical
+                float overlapX = halfSumX - Abs(cdx);    // positivo = se solapan en X
+                float overlapZ = halfSumZ - Abs(cdz);    // positivo = se solapan en Z
 
                 bool touchingVertically =
                     stackGap <= StackContactTolerance &&
@@ -94,36 +93,24 @@ public class SpatialRelationBuilder : IRelationBuilder
                         scene.relations.Add(Make(a.id, b.id, RelationType.Below, 1f));
                 }
 
-                // --- Left / Right (eje mundial X, +X = derecha, corregido por ancho, con límite de distancia) ---
-                float horizontalGap = Abs(dx) - (a.boundsSize.x / 2f + b.boundsSize.x / 2f);
-                if (horizontalGap > HorizontalThreshold && centerDistance <= AxisMaxDistance)
+                // --- Left / Right (eje mundial X, +X = derecha) ---
+                float horizontalGap = Abs(cdx) - halfSumX;
+                if (horizontalGap > HorizontalThreshold && surfaceDistance <= AxisMaxDistance)
                 {
-                    if (dx > 0f)
+                    if (cdx > 0f)
                         scene.relations.Add(Make(a.id, b.id, RelationType.RightOf, 1f));
                     else
                         scene.relations.Add(Make(a.id, b.id, RelationType.LeftOf, 1f));
                 }
 
                 // --- In front of / Behind: CUALQUIER objeto, usando su propia rotación ---
-                if (centerDistance <= OrientationMaxDistance)
+                if (surfaceDistance <= OrientationMaxDistance)
                 {
-                    TryAddDirectional(scene, a, b.id, -dx, -dz); // desde el forward de a, hacia b
-                    TryAddDirectional(scene, b, a.id, dx, dz);   // desde el forward de b, hacia a
+                    TryAddDirectional(scene, a, b.id, -cdx, -cdz); // desde el forward de a, hacia b
+                    TryAddDirectional(scene, b, a.id, cdx, cdz);   // desde el forward de b, hacia a
                 }
             }
         }
-    }
-
-    /// <summary>
-    /// Aproximación barata de un "radio" a partir del tamaño de la caja delimitadora:
-    /// promedio de los 3 semi-ejes. No es geometría exacta (eso sería distancia
-    /// caja-a-caja), pero corrige el grueso del problema con objetos grandes sin
-    /// agregar mucho código.
-    /// </summary>
-    private static float BoundingRadius(SceneObjectIR obj)
-    {
-        var s = obj.boundsSize;
-        return (s.x + s.y + s.z) / 6f;
     }
 
     private void TryAddDirectional(SceneIR scene, SceneObjectIR origin, int targetId, float toTargetX, float toTargetZ)
@@ -154,6 +141,7 @@ public class SpatialRelationBuilder : IRelationBuilder
         return new SceneRelation { sourceId = source, targetId = target, relation = type, value = value };
     }
 
+    private static float NonNegative(float v) => v > 0f ? v : 0f;
     private static float Abs(float v) => v < 0f ? -v : v;
     private static float Sqrt(float v) => (float)System.Math.Sqrt(v);
     private static float Sin(float v) => (float)System.Math.Sin(v);
