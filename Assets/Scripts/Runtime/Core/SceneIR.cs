@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class SceneIR
 {
     public string format = "SceneIR";
-    public string version = "0.6";
+    public string version = "0.7";
 
     // NUEVO: identidad y etiqueta manual del nivel completo (no de un objeto).
     // label: -1 = sin evaluar, 1 = aceptable, 0 = no aceptable.

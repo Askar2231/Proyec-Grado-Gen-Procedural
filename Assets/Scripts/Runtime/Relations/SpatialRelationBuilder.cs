@@ -3,20 +3,22 @@ using System.Collections.Generic;
 /// <summary>
 /// Calcula las relaciones espaciales entre TODOS los pares de objetos de un nivel.
 ///
-/// Todas las medidas salen del centro REAL de la caja (boundsCenter) y de su
-/// tamaño (boundsSize), no del pivote. La distancia entre dos objetos es el
-/// HUECO entre sus cajas (surfaceDistance): 0 si se tocan o se solapan, sin
-/// importar qué tan grandes sean. Así un cubo pegado al borde de un plano de
-/// agua de 20 unidades mide igual que dos cubos pequeños pegados.
+/// Las distancias salen del centro REAL de la caja (boundsCenter) y de su tamaño
+/// (boundsSize). La distancia entre dos objetos es el HUECO entre sus cajas
+/// (surfaceDistance): 0 si se tocan o se solapan, sin importar qué tan grandes sean.
 ///
 /// - Near: 1/(1 + surfaceDistance), en 0..1. Se calcula para todos los pares.
 /// - Above/Below: significan "APILADO". A está Above de B cuando las caras de
 ///   ambos se tocan en vertical (con tolerancia) Y sus huellas en el plano XZ se
-///   solapan, o sea, uno realmente descansa sobre el otro.
-/// - LeftOf/RightOf: eje X del mundo. Requiere un hueco mínimo en X
-///   (HorizontalThreshold) y que surfaceDistance no pase de AxisMaxDistance.
-/// - InFrontOf/Behind: para CUALQUIER objeto, usando su propia rotación en Y
-///   (forward geométrico), dentro de OrientationMaxDistance de hueco entre cajas.
+///   solapan. Usa el eje Y del mundo porque "encima" depende de la gravedad,
+///   no de cómo esté girado el objeto.
+/// - InFrontOf / Behind / LeftOf / RightOf: se miden en el MARCO LOCAL de cada
+///   objeto (su propio delante y su propia derecha, a partir de su rotación en Y),
+///   no en los ejes del mundo. Se evalúan desde el punto de vista de CADA objeto
+///   del par, y la relación se guarda como origen -> destino y significa:
+///   "el destino está delante / detrás / a la izquierda / a la derecha del origen".
+///   Alrededor del origen hay cuatro sectores: delante y detrás (medio ángulo
+///   OrientationConeAngle) y, en lo que sobra, izquierda y derecha.
 ///   No hay filtro por tag.
 /// </summary>
 public class SpatialRelationBuilder : IRelationBuilder
@@ -24,20 +26,19 @@ public class SpatialRelationBuilder : IRelationBuilder
     // Above/Below (apilado):
     // StackContactTolerance: separación máxima entre la cara de arriba de uno y la
     //   de abajo del otro para seguir contando como "en contacto".
-    // StackPenetrationTolerance: cuánto puede estar hundido uno en el otro (una
-    //   roca a medio enterrar en el suelo, un árbol clavado en un plano de agua).
+    // StackPenetrationTolerance: cuánto puede estar hundido uno en el otro.
     // FootprintMinOverlap: solape mínimo en X y en Z para que cuente como apoyado.
     public static float StackContactTolerance = 0.2f;
     public static float StackPenetrationTolerance = 0.3f;
     public static float FootprintMinOverlap = 0.05f;
 
-    // LeftOf/RightOf:
-    public static float HorizontalThreshold = 0.5f;
-    public static float AxisMaxDistance = 8f;       // medido como hueco entre cajas
-
-    // InFrontOf/Behind:
+    // Medio ángulo de los sectores de delante/detrás (en grados).
+    // Con 45, cada sector mide 90°: delante, derecha, detrás, izquierda.
     public static float OrientationConeAngle = 45f;
-    public static float OrientationMaxDistance = 6f; // medido como hueco entre cajas
+
+    // Distancias máximas (hueco entre cajas) para que exista la relación.
+    public static float OrientationMaxDistance = 6f;   // InFrontOf / Behind
+    public static float AxisMaxDistance = 8f;          // LeftOf / RightOf
 
     public void Build(SceneIR scene)
     {
@@ -93,31 +94,39 @@ public class SpatialRelationBuilder : IRelationBuilder
                         scene.relations.Add(Make(a.id, b.id, RelationType.Below, 1f));
                 }
 
-                // --- Left / Right (eje mundial X, +X = derecha) ---
-                float horizontalGap = Abs(cdx) - halfSumX;
-                if (horizontalGap > HorizontalThreshold && surfaceDistance <= AxisMaxDistance)
-                {
-                    if (cdx > 0f)
-                        scene.relations.Add(Make(a.id, b.id, RelationType.RightOf, 1f));
-                    else
-                        scene.relations.Add(Make(a.id, b.id, RelationType.LeftOf, 1f));
-                }
+                // --- InFrontOf / Behind / LeftOf / RightOf: marco local de cada objeto ---
+                float maxDirectional = OrientationMaxDistance > AxisMaxDistance
+                    ? OrientationMaxDistance
+                    : AxisMaxDistance;
 
-                // --- In front of / Behind: CUALQUIER objeto, usando su propia rotación ---
-                if (surfaceDistance <= OrientationMaxDistance)
+                if (surfaceDistance <= maxDirectional)
                 {
-                    TryAddDirectional(scene, a, b.id, -cdx, -cdz); // desde el forward de a, hacia b
-                    TryAddDirectional(scene, b, a.id, cdx, cdz);   // desde el forward de b, hacia a
+                    TryAddDirectional(scene, a, b.id, -cdx, -cdz, surfaceDistance); // desde a, hacia b
+                    TryAddDirectional(scene, b, a.id, cdx, cdz, surfaceDistance);   // desde b, hacia a
                 }
             }
         }
     }
 
-    private void TryAddDirectional(SceneIR scene, SceneObjectIR origin, int targetId, float toTargetX, float toTargetZ)
+    /// <summary>
+    /// Ubica al destino en el marco local del origen. toTargetX/Z es el vector
+    /// origen -> destino en el plano XZ del mundo; el delante y la derecha del
+    /// origen salen de su rotación en Y (Unity: delante = (sin yaw, cos yaw),
+    /// derecha = (cos yaw, -sin yaw)).
+    /// </summary>
+    private void TryAddDirectional(
+        SceneIR scene,
+        SceneObjectIR origin,
+        int targetId,
+        float toTargetX,
+        float toTargetZ,
+        float surfaceDistance)
     {
         float yawRad = origin.transform.rotation.y * (3.14159265f / 180f);
         float forwardX = Sin(yawRad);
         float forwardZ = Cos(yawRad);
+        float rightX = Cos(yawRad);
+        float rightZ = -Sin(yawRad);
 
         float toTargetLength = Sqrt(toTargetX * toTargetX + toTargetZ * toTargetZ);
         if (toTargetLength < 0.0001f) return;
@@ -128,11 +137,24 @@ public class SpatialRelationBuilder : IRelationBuilder
 
         if (angle <= OrientationConeAngle)
         {
-            scene.relations.Add(Make(origin.id, targetId, RelationType.InFrontOf, 1f));
+            if (surfaceDistance <= OrientationMaxDistance)
+                scene.relations.Add(Make(origin.id, targetId, RelationType.InFrontOf, 1f));
         }
         else if (angle >= 180f - OrientationConeAngle)
         {
-            scene.relations.Add(Make(origin.id, targetId, RelationType.Behind, 1f));
+            if (surfaceDistance <= OrientationMaxDistance)
+                scene.relations.Add(Make(origin.id, targetId, RelationType.Behind, 1f));
+        }
+        else if (surfaceDistance <= AxisMaxDistance)
+        {
+            // Sector lateral: el signo de la componente a lo largo de la derecha
+            // local decide si el destino queda a la derecha o a la izquierda.
+            float lateral = rightX * toTargetX + rightZ * toTargetZ;
+
+            if (lateral > 0f)
+                scene.relations.Add(Make(origin.id, targetId, RelationType.RightOf, 1f));
+            else
+                scene.relations.Add(Make(origin.id, targetId, RelationType.LeftOf, 1f));
         }
     }
 
