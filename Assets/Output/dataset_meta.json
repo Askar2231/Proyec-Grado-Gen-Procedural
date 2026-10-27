@@ -1,0 +1,29 @@
+{
+  "n_levels": 20,
+  "max_objects": 182,
+  "n_features": 9,
+  "feature_names": [
+    "token_id",
+    "x",
+    "y",
+    "z",
+    "size_x",
+    "size_y",
+    "size_z",
+    "yaw_sin",
+    "yaw_cos"
+  ],
+  "n_relations": 9,
+  "relation_names": [
+    "Parent",
+    "Child",
+    "Near",
+    "Above",
+    "Below",
+    "LeftOf",
+    "RightOf",
+    "InFrontOf",
+    "Behind"
+  ],
+  "n_unlabeled": 0
+}

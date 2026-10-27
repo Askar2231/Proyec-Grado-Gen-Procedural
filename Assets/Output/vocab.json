@@ -1,0 +1,28 @@
+{
+  "tag_to_id": {
+    "<unknown>": 0,
+    "ArmorStand": 1,
+    "Chest": 2,
+    "Crate": 3,
+    "Enemy": 4,
+    "Rocks": 5,
+    "Structure1": 6,
+    "Structure2": 7,
+    "Structure3": 8,
+    "Tree": 9,
+    "Water": 10
+  },
+  "id_to_tag": {
+    "0": "<unknown>",
+    "1": "ArmorStand",
+    "2": "Chest",
+    "3": "Crate",
+    "4": "Enemy",
+    "5": "Rocks",
+    "6": "Structure1",
+    "7": "Structure2",
+    "8": "Structure3",
+    "9": "Tree",
+    "10": "Water"
+  }
+}

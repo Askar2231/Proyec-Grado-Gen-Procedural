@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef30ede012e028b4f86d80ceed532f7e, type: 3}
+  m_Name: PrefabsUsados
+  m_EditorClassIdentifier: Assembly-CSharp::PCGPrefabRegistry
+  entries:
+  - tag: Structure2
+    prefabs:
+    - {fileID: 5218104908808476191, guid: 6ba9fa78c2b128d4ca9d3c9b559ceb51, type: 3}
+    keepOriginalSize: 0
+    widthRange: {x: 1, y: 1}
+    heightRange: {x: 1, y: 1}
+    lengthRange: {x: 1, y: 1}
+    keepProportions: 0
+  - tag: Structure3
+    prefabs:
+    - {fileID: 2455139026258750306, guid: fcb147e9783f9e545a53c761773e053c, type: 3}
+    keepOriginalSize: 0
+    widthRange: {x: 1, y: 1}
+    heightRange: {x: 1, y: 1}
+    lengthRange: {x: 1, y: 1}
+    keepProportions: 0
+  - tag: Water
+    prefabs:
+    - {fileID: 602786562352686536, guid: 9a851fdb67377f04e96de74dbd85be8d, type: 3}
+    keepOriginalSize: 0
+    widthRange: {x: 1, y: 1}
+    heightRange: {x: 1, y: 1}
+    lengthRange: {x: 1, y: 1}
+    keepProportions: 0
+  - tag: Chest
+    prefabs:
+    - {fileID: 1000014188511100, guid: 5dcae5adf53292945adef517afe8041e, type: 3}
+    keepOriginalSize: 1
+    widthRange: {x: 1, y: 1}
+    heightRange: {x: 1, y: 1}
+    lengthRange: {x: 1, y: 1}
+    keepProportions: 0
+  - tag: Crate
+    prefabs:
+    - {fileID: 119378, guid: 431c7b6a6c1d83844af83c2827df1bdf, type: 3}
+    keepOriginalSize: 1
+    widthRange: {x: 1, y: 1}
+    heightRange: {x: 1, y: 1}
+    lengthRange: {x: 1, y: 1}
+    keepProportions: 0
+  - tag: Tree
+    prefabs:
+    - {fileID: 192044, guid: 19682540d8a014522a319b1cf788aee2, type: 3}
+    - {fileID: 191266, guid: c44bd9bdc114d4a60932c0087d9d1732, type: 3}
+    keepOriginalSize: 1
+    widthRange: {x: 1, y: 1.5}
+    heightRange: {x: 1, y: 2}
+    lengthRange: {x: 1, y: 1}
+    keepProportions: 0
+  - tag: Rocks
+    prefabs:
+    - {fileID: 6819962056721478856, guid: 6b03fd5ce97ca2449b3b9a92cfce1ec5, type: 3}
+    - {fileID: 5514129879276577408, guid: b2981534d2ac4244fafb153e0cb4c9c2, type: 3}
+    keepOriginalSize: 0
+    widthRange: {x: 1, y: 1}
+    heightRange: {x: 1, y: 1}
+    lengthRange: {x: 1, y: 1}
+    keepProportions: 0
+  - tag: Structure1
+    prefabs:
+    - {fileID: 4656891183985686885, guid: 8e2d54dcdfb4a464297c867a4c365352, type: 3}
+    keepOriginalSize: 0
+    widthRange: {x: 1, y: 1}
+    heightRange: {x: 1, y: 1}
+    lengthRange: {x: 1, y: 1}
+    keepProportions: 0
+  - tag: Enemy
+    prefabs: []
+    keepOriginalSize: 0
+    widthRange: {x: 1, y: 1}
+    heightRange: {x: 1, y: 1}
+    lengthRange: {x: 1, y: 1}
+    keepProportions: 0
+  - tag: ArmorStand
+    prefabs:
+    - {fileID: 114222, guid: 96cb24df525410e4eb5e25803c3260af, type: 3}
+    keepOriginalSize: 1
+    widthRange: {x: 1, y: 1}
+    heightRange: {x: 1, y: 1}
+    lengthRange: {x: 1, y: 1}
+    keepProportions: 0
