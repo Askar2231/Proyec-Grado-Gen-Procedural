@@ -1,7 +1,7 @@
 {
   "format": "SceneIR",
   "version": "0.7",
-  "levelId": "level_019",
+  "levelId": "level_066",
   "label": 1,
   "objects": [
     {
@@ -1042,7 +1042,7 @@
     {
       "id": 23,
       "name": "Puentes (1)",
-      "tag": "Untagged",
+      "tag": "Puente",
       "layer": 0,
       "parentId": -1,
       "children": [],
@@ -1087,7 +1087,7 @@
     {
       "id": 24,
       "name": "Puentes (2)",
-      "tag": "Untagged",
+      "tag": "Puente",
       "layer": 0,
       "parentId": -1,
       "children": [],
@@ -1177,7 +1177,7 @@
     {
       "id": 26,
       "name": "Puentes (3)",
-      "tag": "Untagged",
+      "tag": "Puente",
       "layer": 0,
       "parentId": -1,
       "children": [],
@@ -1222,7 +1222,7 @@
     {
       "id": 27,
       "name": "Puentes (4)",
-      "tag": "Untagged",
+      "tag": "Puente",
       "layer": 0,
       "parentId": -1,
       "children": [],
@@ -1312,7 +1312,7 @@
     {
       "id": 29,
       "name": "Puentes (5)",
-      "tag": "Untagged",
+      "tag": "Puente",
       "layer": 0,
       "parentId": -1,
       "children": [],
@@ -1357,7 +1357,7 @@
     {
       "id": 30,
       "name": "Puentes (6)",
-      "tag": "Untagged",
+      "tag": "Puente",
       "layer": 0,
       "parentId": -1,
       "children": [],
@@ -1447,7 +1447,7 @@
     {
       "id": 32,
       "name": "Puentes (7)",
-      "tag": "Untagged",
+      "tag": "Puente",
       "layer": 0,
       "parentId": -1,
       "children": [],
@@ -1492,7 +1492,7 @@
     {
       "id": 33,
       "name": "Puentes (8)",
-      "tag": "Untagged",
+      "tag": "Puente",
       "layer": 0,
       "parentId": -1,
       "children": [],

@@ -1,7 +1,7 @@
 {
   "format": "SceneIR",
   "version": "0.7",
-  "levelId": "level_015",
+  "levelId": "level_062",
   "label": 1,
   "objects": [
     {
@@ -1132,7 +1132,7 @@
     {
       "id": 25,
       "name": "Puentes",
-      "tag": "Untagged",
+      "tag": "Puente",
       "layer": 0,
       "parentId": -1,
       "children": [],
