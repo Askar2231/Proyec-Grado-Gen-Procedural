@@ -16,6 +16,8 @@ TagManager:
   - Chest
   - Enemy
   - Water
+  - Puente
+  - Camino
   layers:
   - Default
   - TransparentFX
