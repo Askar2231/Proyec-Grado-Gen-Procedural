@@ -1,0 +1,9 @@
+codigo,archivo_original,familia,origen
+N01,gen_agua_s0_000.json,agua,generado
+N02,level_051.json,agua,real
+N03,gen_sin_agua_s0_001.json,sin_agua,generado
+N04,gen_agua_s0_001.json,agua,generado
+N05,level_064.json,sin_agua,real
+N06,level_061.json,sin_agua,real
+N07,gen_sin_agua_s0_000.json,sin_agua,generado
+N08,level_055.json,agua,real

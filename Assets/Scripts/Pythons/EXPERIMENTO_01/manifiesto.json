@@ -1,0 +1,903 @@
+{
+ "fecha_inicio": "2026-11-11T11:39:30",
+ "fecha_fin": "2026-11-11T11:56:01",
+ "parametros": {
+  "folder": "C:/Users/User/Proy Grado/Assets/Dataset",
+  "out": "EXPERIMENTO_01",
+  "seed": 0,
+  "test_frac": 0.2,
+  "n_gen": 20,
+  "iters": 60000,
+  "workers": 1,
+  "blind": 10
+ },
+ "equipo": {
+  "sistema": "Windows-10-10.0.26200-SP0",
+  "procesador": "AMD64 Family 25 Model 117 Stepping 2, AuthenticAMD",
+  "python": "3.11.9",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1"
+ },
+ "niveles": {
+  "level_ 128.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "66891607e51d15257cf1de4f520a89140b74d77298c7ad0803a322e02f3425dd"
+  },
+  "level_051.json": {
+   "familia": "agua",
+   "conjunto": "prueba",
+   "sha256": "f10243101766f18069c5296f7e791e68f6cea1244e5e73d2d3be90d17fc463eb"
+  },
+  "level_052.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "6ea0d2c17c01d2fa2fb1ef96d385e12870905695395e590533f96e9983e33b9b"
+  },
+  "level_053.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "15cf9c1552d877adc9c4c8f7397d724eace8685de404488ed59bd1faa999f278"
+  },
+  "level_054.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "dcb4db9f6d1b022a037207374d827f8f9c1f347e80034ce1f8848bcb697cf215"
+  },
+  "level_055.json": {
+   "familia": "agua",
+   "conjunto": "prueba",
+   "sha256": "6eff1d1192e8c5340f1fb53333464e8a6c217948e3a15e4c7909840e950c6634"
+  },
+  "level_056.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "c76c68887b358a4c09f4645313bdc1e049c68751bf34fa41cd751b09a0270fc7"
+  },
+  "level_057.json": {
+   "familia": "agua",
+   "conjunto": "prueba",
+   "sha256": "bbdd5e21a07e6c2639a9589ab98a7d9b786952f1a8acf58d8a66e8f5af6b8616"
+  },
+  "level_058.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "b3fc9629b5321176acfc6d9b2b0ba9f9320476594036d799721ae6621a23c1bf"
+  },
+  "level_059.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "a1a470462d83a3d7eb666086e14092f28c15ab69992c88fe384e34a3c5684fa9"
+  },
+  "level_060.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "931e2f71756f53f49a4a7970e209b628e361eab714258a30007b3f2e3a3b4e13"
+  },
+  "level_061.json": {
+   "familia": "sin_agua",
+   "conjunto": "prueba",
+   "sha256": "bb7537798ef039066d8cd49486268665762ac214d171f40e5e3c42182db258e9"
+  },
+  "level_062.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "da96811a719419e1bb4606945357225dd0c87289d00dc47ff692f9a6f0e0decc"
+  },
+  "level_063.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "408c7f34306a5c319a3be485302eb18871c7854c7efc0c282908c1c3f1a0d4e1"
+  },
+  "level_064.json": {
+   "familia": "sin_agua",
+   "conjunto": "prueba",
+   "sha256": "c3dab98e033208ddcb05bfbb3289cb2f6b7cf2435046f2051fcd584f6fc1041d"
+  },
+  "level_065.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "830d85a5f82a91e7bfe7673ced43a9652c3f970ab0fc25335fbaac667b34e00a"
+  },
+  "level_066.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "a59159801eb9d508babbf85187901eee44baf5e04deded920c8e7ce0a0fc082a"
+  },
+  "level_067.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "9559e313631bfd4abb42b386129476ec0aa7253b3c218fec62ee6afaf06bb94c"
+  },
+  "level_068.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "a77b34ab4368943422ad3998697b20a242922311d3507cefed3c32822de638c7"
+  },
+  "level_069.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "d7e159995a4ecfa0f6aa7a55d334945a8ea2b5c29ef45dc2caebc2041bfd464e"
+  },
+  "level_070.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "c7a1e159bb928edc651b9789feab1a83b044654d9184b2674b628a458cbf7eec"
+  },
+  "level_071.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "e385dd4235f59b3d925f2358f6dbf3ec183d59ba748ef5b3d4ebba258d368a10"
+  },
+  "level_072.json": {
+   "familia": "sin_agua",
+   "conjunto": "prueba",
+   "sha256": "e5d89e7e90b5337cdff481eb30d4e1d8b9edf49f8bb4f2fbcc61448ec8acab39"
+  },
+  "level_073.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "9586215e00858af7706d61a748481938249af0cd91aaf4344a193db45eb7132c"
+  },
+  "level_074.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "f9886d33d68c771cc31531bae73986194d0c40cea1708b18d1b30973ed617858"
+  },
+  "level_075.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "5874ba9578f20285550a0940f0f705ed95a82d0da33ba28863606af03c8a8185"
+  },
+  "level_076.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "1b6a2d9f271224611cdafa2de95707434e6d2d9c7f67dc3d9251c0204ca82851"
+  },
+  "level_077.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "6ee9498a10f585a9f75f40f26b02e1b8d5fcf4b10538de092ff28c77a77190c8"
+  },
+  "level_078.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "5174cd7cab20f4f6ab3992bd0f38eb89e0abb2739babb17e173536e5d8790e12"
+  },
+  "level_079.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "9ac0f7a40d85fb492302e188d3ca890bea1a49589bfd4fe556163b337277e6d5"
+  },
+  "level_080.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "515ebf813ed4b2c6c8bc3be47a5bd9365c68e7efaf1b1a303653e9f1cd428742"
+  },
+  "level_081.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "4ede1d575e04bf47a4454459499965ab5e35c2bd3c58d354f44ce14bea24305d"
+  },
+  "level_082.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "1455319ccf8a1470110b67fe87d02da7add174a28ee17a2e76bfa64ff466c7df"
+  },
+  "level_083.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "59a1b5ccd2a7dba818090ee62499d99022c168f386c840d8f30afffea2ca17d4"
+  },
+  "level_084.json": {
+   "familia": "sin_agua",
+   "conjunto": "prueba",
+   "sha256": "0ec90b9731f9adb09cee609e9d975842a5e95cc67dbb6d94cbf9818e66f8da95"
+  },
+  "level_085.json": {
+   "familia": "sin_agua",
+   "conjunto": "prueba",
+   "sha256": "1111c898f4b0e89d4d069ae40e783d7106f8207e37ea938c77b0ad9a88f21bec"
+  },
+  "level_086.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "ba004ae165fc6a916b8de516e319e3ada326b2fc49af33640abce094cbbec384"
+  },
+  "level_087.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "ceb07b06f3bd386e302e850d6e1f17c3d62467a8ac26f13ceedcff7e66cdf289"
+  },
+  "level_088.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "1a1e66ecaf5cb635d0957884dff4bc1814972dfade6cf59fba5bdba977ab6edc"
+  },
+  "level_089.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "47846da01d37980a099c35616905966598c5695a2d3b429d0bf6e271820368d0"
+  },
+  "level_090.json": {
+   "familia": "sin_agua",
+   "conjunto": "prueba",
+   "sha256": "1edcce8dba9fac2a100084503bb1e60f606ea340bcda6256e56b64e09387274e"
+  },
+  "level_091.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "6cd367663ed4fb256b8503e6e344cd0f3456e42f06d29215479855a03c754f8f"
+  },
+  "level_092.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "cde696536740d68238e5f3dd61563f26aab280d7e2a230b7454971ad5eb302e9"
+  },
+  "level_093.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "3c5df700188a74f0b4cc5d06a8301eb7e25ae9b153de5d693064acea0688058a"
+  },
+  "level_094.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "a29bba6144418252de4a6e3927f9d8dfcd33d943647bcff8b0308d25f8381a1e"
+  },
+  "level_095.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "cafa1bed16f939743636fcf31475cad52fc64d49caff82ef3bdd4df8dde08709"
+  },
+  "level_096.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "f6fecd1a861b2acd42218a6cbb6e7429a834af5a5ea171f97d799e2c6a823422"
+  },
+  "level_097.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "ae4d969476941c7fe64943c0419f59b15deed3bb2df7752832d193390ead4ced"
+  },
+  "level_098.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "6101afb38900353922b391eae535d934afedbe484702f1d82b2b2c1628ffecff"
+  },
+  "level_099.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "ad849f220874dfab578501c8c87e52f8f0f56b6cd1fe5bfcb68c46fb9ca3bc4c"
+  },
+  "level_100.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "8e07f0afbe19611626b89c9dbcd77fe871f535cc07ceedb3c765bd4f55b333f6"
+  },
+  "level_101.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "c973c9a6b2e578127ff13116a4ed305edc672a2ac0e3bfa3c9ab1908624c26e3"
+  },
+  "level_102.json": {
+   "familia": "agua",
+   "conjunto": "prueba",
+   "sha256": "2a18831838ed991e4e89e2903ee1b200fdf48e99457b3b50cef09a0d0d82b645"
+  },
+  "level_103.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "00b2530f10e3748fa93da4b512285dc7c6a1f73c1ba44c12d2226aac366ecfd9"
+  },
+  "level_104.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "a243af3b08814979c2829c1f56b43ef886aab675039afbcd7fffc8cb83f93880"
+  },
+  "level_105.json": {
+   "familia": "sin_agua",
+   "conjunto": "prueba",
+   "sha256": "56229ea54b13bfba4f0f9572e307d60c556a334176516e1759fa92666871d654"
+  },
+  "level_106.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "48b2da883590612eb3df496a59cfdf4f80654bf4c87187927955c512a6d7bf63"
+  },
+  "level_107.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "0685e04b3713b97efcea1743e2185f8fe658d7d876c1f4023effdbe06cd01a9a"
+  },
+  "level_108.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "2bc8e20362541e1ffb2decc42dec3490ed4db425d115b8b9a701f518f075834f"
+  },
+  "level_109.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "6219c5634a9a47faaf16892c95f129344145767e5afbc3a9af010e7764ea3eab"
+  },
+  "level_110.json": {
+   "familia": "sin_agua",
+   "conjunto": "prueba",
+   "sha256": "06de87b69b65d0624c95e4eca7d9098268cd59c8bacae096ba103fc7c664be89"
+  },
+  "level_111.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "d88f84775a256a718ebd0803ffee0a2882666a8f6e189015623b8d85cce94735"
+  },
+  "level_112.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "b170ce190558c6c1ff10b47f41ab0e0e631715d304baabaa6ca7c48498e52a15"
+  },
+  "level_113.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "14d1d0e4260fe4dd5401bdc038c5ad211c5364d3db18ace9c2200069c3fc45b8"
+  },
+  "level_114.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "f83593d1cb235ad0447fe1feb19c5c1f41085551d8b5824187a61f16f67ac271"
+  },
+  "level_115.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "b3debdd0b41d15d902ad1aed7662b8489e5b977d29a2c321e5a3ea7686d19881"
+  },
+  "level_116.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "eb22398b69a41004edaf4d54de2bec60f615fa30e8ef921c70215cf2b9b6a792"
+  },
+  "level_117.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "ef7b0e85b0a9baf91fd6bd25523194a60aeaa857ec5933652ceb878ae586f8c8"
+  },
+  "level_118.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "11e2b05e752a7a798add73289e00ae3d73f80044fd43e38b084788c580f8211a"
+  },
+  "level_119.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "3afebd3f41f6703d55faa7284590a0806d22fa5b0111cecdba899d9298ea7cb4"
+  },
+  "level_120.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "3db203505f067530c52b57f6f5be0833759f7ae7a587836b0e88c9446089b4a6"
+  },
+  "level_121.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "3c27fe40c9f268c2fc54818b05ed2d8e08571fdb053c2db87e8afde1021b8c11"
+  },
+  "level_122.json": {
+   "familia": "agua",
+   "conjunto": "prueba",
+   "sha256": "73aa9aa8df611d9dd74a5301da05e0c4131e6a0dd23c10b4efeba1e0c8610d18"
+  },
+  "level_123.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "c0619a9334666c52804b238b43188972e1c826815682c189a7fe0a4a94c80fa1"
+  },
+  "level_124.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "db4e659f380011408ead7996edffd19f8605ef07eae458ca86dcd66eac4d58cf"
+  },
+  "level_125.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "6ecec27db50866885dd63a599dab4a82a0c0f5f913c08651c240fb7d6f161e11"
+  },
+  "level_126.json": {
+   "familia": "agua",
+   "conjunto": "prueba",
+   "sha256": "c220719412ce3d0d55c6509175fea0b01c5339b029bd9a2b04f329a877d3228b"
+  },
+  "level_127.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "b2b816fb9d349f284d2c1729c8cb99ae3f4918da1328eb0c332a79e199accb9d"
+  },
+  "level_129.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "9cfdd42ad2f42c2e9a8d064bd1b9c1d303581a46084f608c5d426c5f8f0079a3"
+  },
+  "level_130.json": {
+   "familia": "agua",
+   "conjunto": "prueba",
+   "sha256": "ec9794f2dfc4efa897443e53f2018ff12a5f90b7aeb31e32a575758c713dac42"
+  },
+  "level_131.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "8f2fda0702df99d0564bf2588b185f7c7ece2d504d7961cede1b2f1f8fc4b85f"
+  },
+  "level_132.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "20a4f7ea81f794ffc541fbdc7ef826ed1f1fb98e7ca9a1e05f17366ca1a1d9dd"
+  },
+  "level_133.json": {
+   "familia": "agua",
+   "conjunto": "prueba",
+   "sha256": "09849e0f49b33d37437533bbc7396759ac6d07fe324c410e2df291c59e5f6092"
+  },
+  "level_134.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "3d12588cd2c56e6991a763ec2403d87ab1641052d14d5ad489021862570e1ff6"
+  },
+  "level_135.json": {
+   "familia": "agua",
+   "conjunto": "prueba",
+   "sha256": "b7374559564342e8c497d602663f397e2bc3f783cae3c9114f952f3df20bf38f"
+  },
+  "level_136.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "1ef0d849fc8d864b42a0022ac35df37cff5d8a3aaa56d4af7b59293ef5ee8e08"
+  },
+  "level_137.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "d405ef553a4095f0a004d4dfad4ad294c27f9bdbe42870b238f355add3b610eb"
+  },
+  "level_138.json": {
+   "familia": "agua",
+   "conjunto": "prueba",
+   "sha256": "e21d4667bef24321f7ec7829d449326333a3e4b6d3d6ce5db62323ccf5de5d8d"
+  },
+  "level_139.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "ccca45166d0fe61cfe8284109c220b9490a676b1aeafc49deb61ce79b07c5993"
+  },
+  "level_140.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "9846a2cb84212403803a09fe58ebe43aff9008bcd886a7c68756958e51fcc5fe"
+  },
+  "level_141.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "6be666fd6b85b68ed68cbfc5f1de588db1e8a844772a064d9407362826ba44da"
+  },
+  "level_142.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "12939a3a879ef439867b72b19ac675e3c4c13972603bcd6777f5945e5c5bb4cf"
+  },
+  "level_143.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "d8eb1e5d7b8781f19aa092d1e4d777a5a2f4f9f9d78180bee9c2404d7de234f2"
+  },
+  "level_144.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "85ad3eed1b46dfcab70ae6953f8462b922f21080cd60c606560bcf13f443587d"
+  },
+  "level_145.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "bf5d98aebad415f5d14470f2a990f7debead834faa3e308d0646152b1aca28d5"
+  },
+  "level_146.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "5133b7cc86255f72d985f18a23d81f05994b237408575e606605cf1cae6635c4"
+  },
+  "level_147.json": {
+   "familia": "agua",
+   "conjunto": "prueba",
+   "sha256": "f120aaecbb24131ac6d7cab551695396c865a7e7d58cd80f3e52fc4b26bd7cd8"
+  },
+  "level_148.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "c86b4d750b2275b66d188ce48e3f600a436a09c93d64d287df2291bb00b7f49f"
+  },
+  "level_149.json": {
+   "familia": "agua",
+   "conjunto": "ajuste",
+   "sha256": "7522a59e104d41c8b913d0c7067fe2da7045b533af49e7ed8844b82195955a37"
+  },
+  "level_150.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "e47e712d66f111163d5da36e10b5bb135650cc518432adef95a9fe783360a876"
+  },
+  "level_151.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "4baa1778f804d9059126d8adbdea50f9596d9094a553e5495dddbd4932c8dec0"
+  },
+  "level_152.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "a75caef5dc50486bccf88e9a8f923765b5cea89598a63cbc7ac3298d756445c9"
+  },
+  "level_153.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "d6493c1d322e098da1a5975c6aead12825435536a0e1fcbf12ebf033fd4053fd"
+  },
+  "level_154.json": {
+   "familia": "sin_agua",
+   "conjunto": "prueba",
+   "sha256": "cb8c684bce4baf6e403daa5739f7a4fd2a7bc653a74a8f336df53575da54566b"
+  },
+  "level_155.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "37385282623a84dc4cd9b83f7fb8bbcdb04e626acb1fe3649fc766514879412b"
+  },
+  "level_156.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "9d718c1a5efe3acc2aecf417d635d20013c48ec417225d99d7a6024bc28ee365"
+  },
+  "level_157.json": {
+   "familia": "sin_agua",
+   "conjunto": "prueba",
+   "sha256": "9cb8ff79bbb2309034166857f08d506cddcea2bfa8bf4a430028c669e4eabc03"
+  },
+  "level_158.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "d3c8d3a56f948cc764c5057220ad0a9017f67d51a86ba1e6c475a1b4f0f0f578"
+  },
+  "level_159.json": {
+   "familia": "sin_agua",
+   "conjunto": "ajuste",
+   "sha256": "0027e4baa077734c69b0654c05377c742befd720bf4ff82f0a0065f5b7ba4f28"
+  },
+  "level_160.json": {
+   "familia": "sin_agua",
+   "conjunto": "prueba",
+   "sha256": "7eb66b16b6805637c66a4a4a1bf731f8ff0c32428bcf5f4e346ed20da7a13af8"
+  }
+ },
+ "scripts": {
+  "evaluate_generation.py": "ea9340b68a399b155365334945411fd4b8c67598c20262f6798aa1ad6cd6e83a",
+  "fit_families.py": "86ce825a2d49a593e803dcf74529135209a76d0c24f389bfa6b33824681aaa53",
+  "fit_statistics.py": "724cde802b820873b848322c66b02569994d32a29976e085fd658c3e68bf7e27",
+  "generate_level.py": "cfc01d9c50322a6d553cd90c63c8e0f22e19eae8a7910e23e65f131a780d930a",
+  "run_experiment.py": "72741a3a9ad8e7246fb663c1101af4665f22fedb6d96760aa53c252f46ed7afc",
+  "spatial_relations.py": "8c53d83007e1757464de2509a75842c063589496c595d0d71667158410ed71fd"
+ },
+ "generados": [
+  {
+   "archivo": "gen_agua_s0_000.json",
+   "familia": "agua",
+   "tiempo_s": 20.824774999869987,
+   "tiempo_recocido_s": 20.494622299913317,
+   "perdida_final": 7931.079372179466,
+   "penetracion_final": 1.502088727257392
+  },
+  {
+   "archivo": "gen_agua_s0_001.json",
+   "familia": "agua",
+   "tiempo_s": 19.95847490010783,
+   "tiempo_recocido_s": 19.780350000131875,
+   "perdida_final": 2752.9682551046994,
+   "penetracion_final": 0.2280000000000036
+  },
+  {
+   "archivo": "gen_agua_s0_002.json",
+   "familia": "agua",
+   "tiempo_s": 19.962436399888247,
+   "tiempo_recocido_s": 19.732509299879894,
+   "perdida_final": 12573.634158507102,
+   "penetracion_final": 0.5999999999999794
+  },
+  {
+   "archivo": "gen_agua_s0_003.json",
+   "familia": "agua",
+   "tiempo_s": 20.762875800020993,
+   "tiempo_recocido_s": 20.511568300193176,
+   "perdida_final": 7599.142752197712,
+   "penetracion_final": 1.5670903156743354
+  },
+  {
+   "archivo": "gen_agua_s0_004.json",
+   "familia": "agua",
+   "tiempo_s": 18.819058099994436,
+   "tiempo_recocido_s": 18.641915899934247,
+   "perdida_final": 12923.001903695786,
+   "penetracion_final": 0.4199999999999383
+  },
+  {
+   "archivo": "gen_agua_s0_005.json",
+   "familia": "agua",
+   "tiempo_s": 17.82883489993401,
+   "tiempo_recocido_s": 17.686120699858293,
+   "perdida_final": 2427.596257187683,
+   "penetracion_final": 0.17999995300000143
+  },
+  {
+   "archivo": "gen_agua_s0_006.json",
+   "familia": "agua",
+   "tiempo_s": 20.47512950003147,
+   "tiempo_recocido_s": 20.21353599987924,
+   "perdida_final": 5698.807786562627,
+   "penetracion_final": 0.6600000000000066
+  },
+  {
+   "archivo": "gen_agua_s0_007.json",
+   "familia": "agua",
+   "tiempo_s": 19.757676099892706,
+   "tiempo_recocido_s": 19.405534900026396,
+   "perdida_final": 5311.9994632723565,
+   "penetracion_final": 1.0701760214672815
+  },
+  {
+   "archivo": "gen_agua_s0_008.json",
+   "familia": "agua",
+   "tiempo_s": 20.560256300028414,
+   "tiempo_recocido_s": 20.255020400043577,
+   "perdida_final": 5728.934471234236,
+   "penetracion_final": 0.6600000000000055
+  },
+  {
+   "archivo": "gen_agua_s0_009.json",
+   "familia": "agua",
+   "tiempo_s": 22.458371700020507,
+   "tiempo_recocido_s": 22.158877399982885,
+   "perdida_final": 12215.92809002929,
+   "penetracion_final": 0.8592319489344449
+  },
+  {
+   "archivo": "gen_agua_s0_010.json",
+   "familia": "agua",
+   "tiempo_s": 15.685696699889377,
+   "tiempo_recocido_s": 15.562435399973765,
+   "perdida_final": 7956.710813087854,
+   "penetracion_final": 0.059999999999974574
+  },
+  {
+   "archivo": "gen_agua_s0_011.json",
+   "familia": "agua",
+   "tiempo_s": 24.039368799887598,
+   "tiempo_recocido_s": 23.750385500025004,
+   "perdida_final": 5704.05250754803,
+   "penetracion_final": 0.7761324841853585
+  },
+  {
+   "archivo": "gen_agua_s0_012.json",
+   "familia": "agua",
+   "tiempo_s": 29.081922699930146,
+   "tiempo_recocido_s": 28.651770900003612,
+   "perdida_final": 22074.76263679921,
+   "penetracion_final": 0.47095942196402024
+  },
+  {
+   "archivo": "gen_agua_s0_013.json",
+   "familia": "agua",
+   "tiempo_s": 20.92388999997638,
+   "tiempo_recocido_s": 20.76207279996015,
+   "perdida_final": 8232.206598253731,
+   "penetracion_final": 0.7199999999999924
+  },
+  {
+   "archivo": "gen_agua_s0_014.json",
+   "familia": "agua",
+   "tiempo_s": 23.657267100177705,
+   "tiempo_recocido_s": 23.370991199975833,
+   "perdida_final": 6054.278729798836,
+   "penetracion_final": 0.35328000000001636
+  },
+  {
+   "archivo": "gen_agua_s0_015.json",
+   "familia": "agua",
+   "tiempo_s": 30.18277239985764,
+   "tiempo_recocido_s": 29.831011099973693,
+   "perdida_final": 5713.600485948034,
+   "penetracion_final": 0.6600000000000008
+  },
+  {
+   "archivo": "gen_agua_s0_016.json",
+   "familia": "agua",
+   "tiempo_s": 23.658222900005057,
+   "tiempo_recocido_s": 23.448534299852327,
+   "perdida_final": 3328.484983600835,
+   "penetracion_final": 0.600000000000005
+  },
+  {
+   "archivo": "gen_agua_s0_017.json",
+   "familia": "agua",
+   "tiempo_s": 23.01832660008222,
+   "tiempo_recocido_s": 22.685801499988884,
+   "perdida_final": 11894.422004442082,
+   "penetracion_final": 0.05999999999999889
+  },
+  {
+   "archivo": "gen_agua_s0_018.json",
+   "familia": "agua",
+   "tiempo_s": 23.898277400061488,
+   "tiempo_recocido_s": 23.67359790019691,
+   "perdida_final": 3171.5770055025732,
+   "penetracion_final": 0.5299199999999942
+  },
+  {
+   "archivo": "gen_agua_s0_019.json",
+   "familia": "agua",
+   "tiempo_s": 20.540525200078264,
+   "tiempo_recocido_s": 20.394907699897885,
+   "perdida_final": 6020.956032379685,
+   "penetracion_final": 0.29999999999997656
+  },
+  {
+   "archivo": "gen_sin_agua_s0_000.json",
+   "familia": "sin_agua",
+   "tiempo_s": 23.993219600059092,
+   "tiempo_recocido_s": 22.78089420008473,
+   "perdida_final": 2707.3254960966888,
+   "penetracion_final": 4.6629367034256575e-15
+  },
+  {
+   "archivo": "gen_sin_agua_s0_001.json",
+   "familia": "sin_agua",
+   "tiempo_s": 25.60810730000958,
+   "tiempo_recocido_s": 25.338771800044924,
+   "perdida_final": 6393.288222269968,
+   "penetracion_final": -8.104628079763643e-15
+  },
+  {
+   "archivo": "gen_sin_agua_s0_002.json",
+   "familia": "sin_agua",
+   "tiempo_s": 21.862223900156096,
+   "tiempo_recocido_s": 21.617627500090748,
+   "perdida_final": 1767.7630534849868,
+   "penetracion_final": -2.6645352591003757e-15
+  },
+  {
+   "archivo": "gen_sin_agua_s0_003.json",
+   "familia": "sin_agua",
+   "tiempo_s": 22.824799800058827,
+   "tiempo_recocido_s": 22.570241800043732,
+   "perdida_final": 6525.2672362430585,
+   "penetracion_final": -1.0269562977782698e-14
+  },
+  {
+   "archivo": "gen_sin_agua_s0_004.json",
+   "familia": "sin_agua",
+   "tiempo_s": 23.83594650006853,
+   "tiempo_recocido_s": 23.160670399898663,
+   "perdida_final": 4472.182223559041,
+   "penetracion_final": 1.0436096431476471e-14
+  },
+  {
+   "archivo": "gen_sin_agua_s0_005.json",
+   "familia": "sin_agua",
+   "tiempo_s": 27.094749100040644,
+   "tiempo_recocido_s": 26.81203699996695,
+   "perdida_final": 6745.604272465846,
+   "penetracion_final": 4.107825191113079e-15
+  },
+  {
+   "archivo": "gen_sin_agua_s0_006.json",
+   "familia": "sin_agua",
+   "tiempo_s": 23.105533000081778,
+   "tiempo_recocido_s": 22.87198569998145,
+   "perdida_final": 2919.2938698619837,
+   "penetracion_final": 2.3314683517128287e-15
+  },
+  {
+   "archivo": "gen_sin_agua_s0_007.json",
+   "familia": "sin_agua",
+   "tiempo_s": 24.27436409983784,
+   "tiempo_recocido_s": 24.05223589995876,
+   "perdida_final": 2278.3598815059013,
+   "penetracion_final": 7.216449660063518e-16
+  },
+  {
+   "archivo": "gen_sin_agua_s0_008.json",
+   "familia": "sin_agua",
+   "tiempo_s": 23.039769700029865,
+   "tiempo_recocido_s": 22.82562609994784,
+   "perdida_final": 2312.64527211104,
+   "penetracion_final": 3.497202527569243e-15
+  },
+  {
+   "archivo": "gen_sin_agua_s0_009.json",
+   "familia": "sin_agua",
+   "tiempo_s": 22.646193700144067,
+   "tiempo_recocido_s": 22.415620499989018,
+   "perdida_final": 2625.2777421321966,
+   "penetracion_final": -8.881784197001252e-16
+  },
+  {
+   "archivo": "gen_sin_agua_s0_010.json",
+   "familia": "sin_agua",
+   "tiempo_s": 22.725841300096363,
+   "tiempo_recocido_s": 22.466196000110358,
+   "perdida_final": 5986.855278376603,
+   "penetracion_final": -4.6629367034256575e-15
+  },
+  {
+   "archivo": "gen_sin_agua_s0_011.json",
+   "familia": "sin_agua",
+   "tiempo_s": 22.20256429980509,
+   "tiempo_recocido_s": 21.984377099899575,
+   "perdida_final": 2993.8862406735166,
+   "penetracion_final": -1.659783421814609e-14
+  },
+  {
+   "archivo": "gen_sin_agua_s0_012.json",
+   "familia": "sin_agua",
+   "tiempo_s": 22.86589129990898,
+   "tiempo_recocido_s": 22.585945499828085,
+   "perdida_final": 6229.694092535217,
+   "penetracion_final": 1.3322676295501878e-15
+  },
+  {
+   "archivo": "gen_sin_agua_s0_013.json",
+   "familia": "sin_agua",
+   "tiempo_s": 31.51913749985397,
+   "tiempo_recocido_s": 31.283751899842173,
+   "perdida_final": 2544.0241229704925,
+   "penetracion_final": 5.551115123125783e-17
+  },
+  {
+   "archivo": "gen_sin_agua_s0_014.json",
+   "familia": "sin_agua",
+   "tiempo_s": 27.023419100092724,
+   "tiempo_recocido_s": 26.67338030016981,
+   "perdida_final": 13856.997116430543,
+   "penetracion_final": 0.6948049141683905
+  },
+  {
+   "archivo": "gen_sin_agua_s0_015.json",
+   "familia": "sin_agua",
+   "tiempo_s": 24.548607100034133,
+   "tiempo_recocido_s": 24.25878270016983,
+   "perdida_final": 5978.7144948017885,
+   "penetracion_final": -3.3306690738754696e-15
+  },
+  {
+   "archivo": "gen_sin_agua_s0_016.json",
+   "familia": "sin_agua",
+   "tiempo_s": 24.239990399917588,
+   "tiempo_recocido_s": 24.003437399864197,
+   "perdida_final": 9379.692263873203,
+   "penetracion_final": 0.10999999999994792
+  },
+  {
+   "archivo": "gen_sin_agua_s0_017.json",
+   "familia": "sin_agua",
+   "tiempo_s": 22.97809089999646,
+   "tiempo_recocido_s": 22.68690300011076,
+   "perdida_final": 4228.285436831634,
+   "penetracion_final": 0.0001174573763390585
+  },
+  {
+   "archivo": "gen_sin_agua_s0_018.json",
+   "familia": "sin_agua",
+   "tiempo_s": 27.11552769993432,
+   "tiempo_recocido_s": 26.901492999866605,
+   "perdida_final": 1480.2861205083564,
+   "penetracion_final": -4.440892098500626e-16
+  },
+  {
+   "archivo": "gen_sin_agua_s0_019.json",
+   "familia": "sin_agua",
+   "tiempo_s": 23.58819040004164,
+   "tiempo_recocido_s": 23.261819599894807,
+   "perdida_final": 6148.765544648685,
+   "penetracion_final": 0.005656607256999957
+  }
+ ]
+}

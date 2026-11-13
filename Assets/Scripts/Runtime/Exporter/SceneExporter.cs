@@ -21,20 +21,12 @@ public static class SceneExporter
         return scene;
     }
 
-    /// <summary>
-    /// NUEVO: exporta solo el subárbol bajo 'root' (ej. el nodo "SpawnedObjects"),
-    /// en vez de la escena completa. Úsalo para el flujo real de los 100 niveles,
-    /// así la cámara, la luz, el marcador "Zone", etc. no terminan en el dataset.
-    /// </summary>
+   
     public static SceneIR ExportFromRoot(Transform root)
     {
         currentId = 0;
 
         SceneIR scene = new();
-
-        // Se parsean los HIJOS de 'root', no 'root' mismo -- así el contenedor
-        // "SpawnedObjects" (que no es un objeto semántico) no termina como una
-        // entrada más en scene.objects.
         foreach (Transform child in root)
         {
             Parse(child, scene, -1);
@@ -60,14 +52,7 @@ public static class SceneExporter
         obj.transform.position = ToVector3IR(tr.position);
         obj.transform.rotation = ToVector3IR(tr.eulerAngles);
         obj.transform.scale = ToVector3IR(tr.localScale);
-
-        // NUEVO: tamaño real en mundo, para que SpatialRelationBuilder pueda
-        // corregir la distancia por tamaño (atalayas/estructuras grandes vs
-        // props chicos). Prioridad: Renderer.bounds; si no hay, Collider.bounds;
-        // si tampoco, queda en (0,0,0) -- se trata como punto, igual que antes.
         obj.boundsSize = GetBoundsSize(tr);
-
-        // NUEVO: centro real de la caja (no el pivote), para Above/Below.
         obj.boundsCenter = GetBoundsCenter(tr);
 
         foreach (Component c in tr.GetComponents<Component>())
@@ -133,8 +118,7 @@ public static class SceneExporter
         {
             return ToVector3IR(collider.bounds.center);
         }
-
-        // Sin volumen: el "centro" es la posición del objeto.
+        
         return ToVector3IR(tr.position);
     }
 

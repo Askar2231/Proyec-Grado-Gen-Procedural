@@ -1,42 +1,11 @@
 using System.Collections.Generic;
 
-/// <summary>
-/// Calcula las relaciones espaciales entre TODOS los pares de objetos de un nivel.
-///
-/// Las distancias salen del centro REAL de la caja (boundsCenter) y de su tamaño
-/// (boundsSize). La distancia entre dos objetos es el HUECO entre sus cajas
-/// (surfaceDistance): 0 si se tocan o se solapan, sin importar qué tan grandes sean.
-///
-/// - Near: 1/(1 + surfaceDistance), en 0..1. Se calcula para todos los pares.
-/// - Above/Below: significan "APILADO". A está Above de B cuando las caras de
-///   ambos se tocan en vertical (con tolerancia) Y sus huellas en el plano XZ se
-///   solapan. Usa el eje Y del mundo porque "encima" depende de la gravedad,
-///   no de cómo esté girado el objeto.
-/// - InFrontOf / Behind / LeftOf / RightOf: se miden en el MARCO LOCAL de cada
-///   objeto (su propio delante y su propia derecha, a partir de su rotación en Y),
-///   no en los ejes del mundo. Se evalúan desde el punto de vista de CADA objeto
-///   del par, y la relación se guarda como origen -> destino y significa:
-///   "el destino está delante / detrás / a la izquierda / a la derecha del origen".
-///   Alrededor del origen hay cuatro sectores: delante y detrás (medio ángulo
-///   OrientationConeAngle) y, en lo que sobra, izquierda y derecha.
-///   No hay filtro por tag.
-/// </summary>
 public class SpatialRelationBuilder : IRelationBuilder
 {
-    // Above/Below (apilado):
-    // StackContactTolerance: separación máxima entre la cara de arriba de uno y la
-    //   de abajo del otro para seguir contando como "en contacto".
-    // StackPenetrationTolerance: cuánto puede estar hundido uno en el otro.
-    // FootprintMinOverlap: solape mínimo en X y en Z para que cuente como apoyado.
     public static float StackContactTolerance = 0.2f;
     public static float StackPenetrationTolerance = 0.3f;
     public static float FootprintMinOverlap = 0.05f;
-
-    // Medio ángulo de los sectores de delante/detrás (en grados).
-    // Con 45, cada sector mide 90°: delante, derecha, detrás, izquierda.
     public static float OrientationConeAngle = 45f;
-
-    // Distancias máximas (hueco entre cajas) para que exista la relación.
     public static float OrientationMaxDistance = 6f;   // InFrontOf / Behind
     public static float AxisMaxDistance = 8f;          // LeftOf / RightOf
 

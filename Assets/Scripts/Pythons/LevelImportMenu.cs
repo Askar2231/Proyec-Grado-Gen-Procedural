@@ -1,32 +1,11 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-
-/// <summary>
-/// PCG > Importar nivel generado...
-///
-/// Lee un JSON producido por generate_level.py y arma el nivel en la escena
-/// activa, bajo "SpawnedObjects" (la misma raíz que usa LevelExportMenu).
-///
-/// Para cada objeto del JSON:
-///   0. Si existe un PCGPrefabRegistry en el proyecto, usa sus prefabs primero.
-///   1. Si no, busca un prefab cuyo TAG sea el del objeto (Tree, Crate, ...), sin importar
-///      cómo se llame el prefab. Si no lo hay,
-///      pone un cubo gris del tamaño correcto (graybox) para que el nivel se vea igual.
-///      Los objetos sin tag (puentes) también salen como cubo gris. A cada cubo se le
-///      asigna el material cuyo nombre sea el tag (Tree, Crate, ...) si existe.
-///   2. Lo escala para que su caja mida el tamaño local que el generador eligió.
-///   3. Lo gira en Y.
-///   4. Lo mueve para que el CENTRO de su caja y su BASE queden donde dice el JSON
-///      (así no importa dónde tenga el pivote cada prefab).
-///
-/// Como el resultado queda bajo "SpawnedObjects", puedes volver a correr
-/// PCG > Exportar nivel actual... para exportarlo de nuevo desde Unity.
-/// </summary>
 public static class LevelImportMenu
 {
     private const string RootObjectName = "SpawnedObjects";
@@ -74,6 +53,7 @@ public static class LevelImportMenu
                 Undo.DestroyObjectImmediate(root.transform.GetChild(i).gameObject);
         }
 
+        var reloj = System.Diagnostics.Stopwatch.StartNew();   // tiempo de importación (métrica)
         prefabsByTag = null;   // se vuelve a indexar en cada importación
         PCGPrefabRegistry registry = FindRegistry();
         var prefabCache = new Dictionary<string, GameObject>();
@@ -154,16 +134,32 @@ public static class LevelImportMenu
                 bCenter.z - b2.center.z);
         }
 
+        reloj.Stop();
         EditorSceneManager.MarkSceneDirty(root.scene);
         Selection.activeGameObject = root;
+        RegistrarTiempo(Path.GetFileNameWithoutExtension(path), objects.Count, reloj.Elapsed.TotalSeconds,
+                        placeholders.Values.Sum());
 
         // ---- resumen ----
         var sb = new System.Text.StringBuilder();
-        sb.AppendLine($"[LevelImportMenu] Importados {objects.Count} objetos desde {Path.GetFileName(path)}");
+        sb.AppendLine($"[LevelImportMenu] Importados {objects.Count} objetos desde {Path.GetFileName(path)} en {reloj.Elapsed.TotalSeconds:F2} s");
         foreach (var kv in usedPrefab) sb.AppendLine($"  {kv.Key}  ->  prefab '{kv.Value}'");
         foreach (var kv in placeholders) sb.AppendLine($"  {kv.Key}  ->  {kv.Value} cubo(s) gris (no hay prefab con ese nombre)");
         foreach (string t in badTags) sb.AppendLine($"  AVISO: el tag '{t}' no existe en Unity (Edit > Project Settings > Tags and Layers)");
         Debug.Log(sb.ToString());
+    }
+
+    /// <summary>Agrega una fila a PCG_Metricas/importacion.csv (carpeta del proyecto).</summary>
+    private static void RegistrarTiempo(string nivel, int objetos, double segundos, int marcadores)
+    {
+        string dir = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "PCG_Metricas"));
+        Directory.CreateDirectory(dir);
+        string file = Path.Combine(dir, "importacion.csv");
+        var inv = System.Globalization.CultureInfo.InvariantCulture;
+        if (!File.Exists(file))
+            File.WriteAllText(file, "fecha,nivel,objetos,segundos,cubos_marcador\n");
+        File.AppendAllText(file, string.Join(",", System.DateTime.Now.ToString("s"), nivel, objetos,
+                           segundos.ToString("F3", inv), marcadores) + "\n");
     }
 
     // ------------------------------------------------------------------ //

@@ -1,20 +1,3 @@
-"""
-evaluate_generation.py
-
-Compara niveles generados contra niveles reales de la misma familia.
-
-Métricas (por nivel):
-  pérdida_estadística  qué tan lejos están sus conteos de vecinos por tipo y rango
-                       de distancia de lo que dice el modelo (menor = más parecido).
-                       Se calcula igual para los reales: es la línea base.
-  pares_atravesados    pares de objetos que se meten uno dentro de otro > 0.3 unid.
-  novedad              distancia al nivel real más parecido (cuadrícula 6x4 de
-                       posiciones por tipo); si fuera ~0 sería una copia.
-Además dibuja la vista desde arriba (PNG) de un generado y un real.
-
-Uso:
-    python evaluate_generation.py <model_familia.json> <carpeta_generados> <carpeta_json_reales> <salida_png>
-"""
 import json
 import sys
 from pathlib import Path

@@ -1,22 +1,3 @@
-"""
-generate_level.py
-
-Generador de niveles (etapa 1): sorteo + recocido simulado (simulated annealing).
-
-1. SORTEA el inventario: copia los conteos por tipo de un nivel real elegido al
-   azar de la familia (así los conteos son coherentes entre sí).
-2. SORTEA tamaño local y giro de cada objeto según lo aprendido, y de ahí calcula
-   su caja alineada a los ejes (como la exporta Unity).
-3. COLOCA todo al azar y lo va moviendo: cada movimiento se acepta si acerca las
-   estadísticas del nivel a las del modelo (cuántos vecinos de cada tipo a cada
-   rango de distancia), o con cierta probabilidad si las aleja (la "temperatura"
-   baja con el tiempo). Se penaliza que dos objetos se atraviesen.
-4. EXPORTA un JSON con el mismo formato que los niveles reales (SceneIR 0.7),
-   con las relaciones calculadas por spatial_relations.py.
-
-Uso:
-    python generate_level.py <model_familia.json> <carpeta_salida> [n_niveles] [semilla]
-"""
 import json
 import math
 import sys
@@ -41,6 +22,7 @@ class Model:
         self.tags = m["meta"]["tags"]
         self.tix = {t: i for i, t in enumerate(self.tags)}
         self.zone = (m["zone"]["width_median"], m["zone"]["length_median"])
+        self.templates = {t["level_index"]: t for t in m.get("river_templates", [])}
         self.types = m["types"]
         nt = len(self.tags)
         self.npo = np.zeros((nt, K, nt))        # vecinos por origen [A, rango, B]
@@ -113,34 +95,66 @@ class Level:
         any_t = next(iter(counts.values()))
         n_lv = len(any_t["count"]["per_level"])
         lv = int(rng.integers(n_lv))
-        # per_level incluye TODOS los niveles del ajuste de la familia (ver fit_families)
-        self.tag_idx, self.local, self.yaw, self.ext, self.base = [], [], [], [], []
+        # estructura (agua + puentes): se copia del MISMO nivel real, con variaciones
+        tpl = m.templates.get(lv)
+        struct = {o["tag"] for o in tpl["objects"]} if tpl else set()
+        entries = []   # (tag_idx, local, yaw, (x, z), base_y, fixed)
         for t in m.tags:
-            c = counts[t]["count"]["per_level"][lv]
-            for _ in range(c):
-                self.tag_idx.append(m.tix[t])
-        self.n = len(self.tag_idx)
-        self.tag_idx = np.array(self.tag_idx)
+            if t in struct:
+                continue
+            for _ in range(counts[t]["count"]["per_level"][lv]):
+                ty = counts[t]
+                entries.append((m.tix[t], sample_local_size(ty, rng), sample_yaw(ty["yaw"], rng),
+                                None, ty["base_y"]["mean"], False))
+        if tpl:
+            for o in self._river(tpl):
+                entries.append((m.tix[o["tag"]], tuple(o["local"]), o["yaw"],
+                                (o["x"], o["z"]), o["base_y"], True))
+
+        self.n = len(entries)
+        self.tag_idx = np.array([e[0] for e in entries])
+        self.local = [e[1] for e in entries]
+        self.yaw = np.array([e[2] for e in entries], dtype=float)
+        self.base = np.array([e[4] for e in entries], dtype=float)
+        self.fixed = np.array([e[5] for e in entries])
+        self.ext = np.array([aabb(self.local[i], self.yaw[i]) for i in range(self.n)])
+        self.ycen = self.base + self.ext[:, 1] / 2
         self.pos = np.zeros((self.n, 2))
-        self.ext = np.zeros((self.n, 3))
-        self.ycen = np.zeros(self.n)
-        self.local = []
-        self.yaw = np.zeros(self.n)
-        self.base = np.zeros(self.n)
-        for i, ti in enumerate(self.tag_idx):
-            t = counts[m.tags[ti]]
-            self.local.append(sample_local_size(t, rng))
-            self.yaw[i] = sample_yaw(t["yaw"], rng)
-            self.ext[i] = aabb(self.local[i], self.yaw[i])
-            self.base[i] = t["base_y"]["mean"]
-            self.ycen[i] = self.base[i] + self.ext[i][1] / 2
-            self.pos[i] = sample_position(t, m.zone, rng)
+        for i, e in enumerate(entries):
+            self.pos[i] = e[3] if e[3] is not None else sample_position(
+                counts[m.tags[e[0]]], m.zone, rng)
         self.count = np.bincount(self.tag_idx, minlength=len(m.tags)).astype(float)
         self.target = m.npo * self.count[:, None, None]
         self.weight = 1.0 / (self.target + 1.0)
         self.O = np.zeros_like(self.target)
         self.pen = 0.0
         self._build_counts()
+
+    def _river(self, tpl):
+        """Copia el río de una plantilla: cambia su posición transversal, a veces lo
+        espeja a lo largo, y desplaza un poco los puentes a lo largo del río."""
+        rng, m = self.rng, self.m
+        ax = tpl["axis"]                       # eje a lo largo del cual corre el río
+        same = [t for t in m.templates.values() if t["axis"] == ax]
+        across_key, along_key = ("z", "x") if ax == "x" else ("x", "z")
+        w = [o for o in tpl["objects"] if o["tag"] == "Water"]
+        base_across = float(np.mean([o[across_key] for o in w]))
+        allw = [float(np.mean([o[across_key] for o in t["objects"] if o["tag"] == "Water"])) for t in same]
+        lo, hi = min(allw) - 3.0, max(allw) + 3.0
+        new_across = rng.uniform(lo, hi)
+        flip = -1.0 if rng.random() < 0.5 else 1.0
+        along_lo = min(o[along_key] for o in w)
+        along_hi = max(o[along_key] for o in w)
+        out = []
+        for o in tpl["objects"]:
+            o = dict(o)
+            along = o[along_key]
+            if o["tag"] in ("Puente", "Untagged"):   # puentes: se desplazan un poco a lo largo del río
+                along = float(np.clip(along + rng.uniform(-4, 4), along_lo, along_hi))
+            o[along_key] = flip * along
+            o[across_key] = new_across + (o[across_key] - base_across)
+            out.append(o)
+        return out
 
     def _build_counts(self):
         self.O[:] = 0
@@ -192,11 +206,12 @@ class Level:
         T0, T1 = L0 * 0.004, L0 * 1e-6
         W, Ln = m.zone
         acc = 0
+        movable = np.flatnonzero(~self.fixed)
         for it in range(iters):
             f = it / iters
             T = T0 * (T1 / T0) ** f
             sigma = 12.0 * (1 - f) + 0.5 * f
-            i = int(rng.integers(self.n))
+            i = int(rng.choice(movable))
             r = rng.random()
             t = m.types[m.tags[self.tag_idx[i]]]
             new_yaw = self.yaw[i]

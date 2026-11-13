@@ -1,0 +1,27 @@
+familia,metrica,nombre,real_n,real_media,real_de,real_mediana,real_min,real_max,gen_n,gen_media,gen_de,gen_mediana,gen_min,gen_max,p_mann_whitney,delta_cliff
+agua,tiempo_s,Tiempo de generación (s),0,nan,nan,nan,nan,nan,20,21.8047,3.41966,20.7938,15.6857,30.1828,nan,nan
+agua,objetos,Objetos por nivel,11,160.364,22.774,157,123,206,20,167.15,25.8157,174,125,218,0.396299,0.190909
+agua,pares_atravesados,Pares de objetos atravesados,11,23.0909,20.1418,19,3,66,20,10.6,7.46501,10,1,29,0.115977,-0.35
+agua,perdida_estadistica,Pérdida estadística,11,7837.7,3280.25,7518.96,4151.97,14561.7,20,7741.15,4673.3,6024.55,2420.4,22055.9,0.885104,-0.0363636
+agua,novedad,Novedad (distancia al nivel de ajuste más parecido),11,12.5643,1.25025,12.5103,10.8781,14.2631,20,12.2877,1.47463,12.405,9.43258,14.505,0.75683,-0.0727273
+agua,densidad_ocupacion,Densidad de ocupación,11,0.145002,0.0283578,0.156549,0.104988,0.186451,20,0.139921,0.0358124,0.129578,0.09669,0.217355,0.522215,-0.145455
+agua,fraccion_agua,Fracción de agua,11,0.132792,0.127307,0.0849912,0.0477707,0.390857,20,0.14247,0.075764,0.137088,0.0440757,0.318433,0.154339,0.318182
+agua,puentes_sobre_agua,Puentes que tocan el agua,11,0.818182,0.3371,1,0,1,19,0.934211,0.233365,1,0,1,0.245825,0.172249
+agua,puentes_que_cruzan,Puentes que cruzan el río,11,0.522727,0.480293,0.5,0,1,19,0.263158,0.428772,0,0,1,0.105129,-0.325359
+agua,rel_cerca_por_objeto,Relaciones de cercanía por objeto,11,0.516694,0.201594,0.496815,0.265306,0.909091,20,0.565276,0.172916,0.57953,0.198413,0.862637,0.444944,0.172727
+agua,rel_apilado_por_objeto,Relaciones de apilamiento por objeto,11,0.0584735,0.0331739,0.0536913,0.0208333,0.13369,20,0.0363331,0.0209927,0.0346123,0.00787402,0.0898204,0.0547847,-0.427273
+agua,rel_lateral_por_objeto,Relaciones laterales por objeto,11,4.95862,0.825888,4.47651,4.17687,6.54545,20,5.13036,1.10829,5.38912,3.14286,6.99479,0.605801,0.118182
+agua,rel_frontal_por_objeto,Relaciones frontales por objeto,11,3.29594,0.548573,3.28662,2.68027,4.29947,20,3.51123,0.742713,3.65031,2.06349,4.8211,0.311772,0.227273
+agua,diversidad,Diversidad entre niveles del grupo,11,15.3204,,,,,20,15.9214,,,,,,
+sin_agua,tiempo_s,Tiempo de generación (s),0,nan,nan,nan,nan,nan,20,24.3546,2.32101,23.7121,21.8622,31.5191,nan,nan
+sin_agua,objetos,Objetos por nivel,11,158.545,14.8887,156,130,182,20,165.3,13.5689,164.5,141,190,0.247104,0.259091
+sin_agua,pares_atravesados,Pares de objetos atravesados,11,9.90909,7.17572,8,3,27,20,0.55,1.79106,0,0,8,4.09457e-06,-0.945455
+sin_agua,perdida_estadistica,Pérdida estadística,11,8463.1,4884.8,6413.18,3428.02,19207.1,20,4877.09,3013.08,4350.23,1480.29,13829.2,0.0175988,-0.527273
+sin_agua,novedad,Novedad (distancia al nivel de ajuste más parecido),11,10.4306,1.89554,9.9964,7.67525,13.0789,20,11.7006,0.710268,11.7656,9.81805,12.9226,0.142741,0.327273
+sin_agua,densidad_ocupacion,Densidad de ocupación,11,0.176422,0.0489047,0.164388,0.115834,0.273288,20,0.153468,0.0278415,0.142151,0.116381,0.203613,0.179661,-0.3
+sin_agua,fraccion_agua,Fracción de agua,11,0,0,0,0,0,20,0,0,0,0,0,nan,0
+sin_agua,rel_cerca_por_objeto,Relaciones de cercanía por objeto,11,0.35608,0.062128,0.357143,0.246154,0.445122,20,0.325174,0.135926,0.29043,0.144828,0.568421,0.223246,-0.272727
+sin_agua,rel_apilado_por_objeto,Relaciones de apilamiento por objeto,11,0.00966542,0.0110921,0.00649351,0,0.0384615,20,0.00883314,0.0125417,0.00579754,0,0.0473684,0.540284,-0.136364
+sin_agua,rel_lateral_por_objeto,Relaciones laterales por objeto,11,4.35501,0.593935,4.34146,3.44615,5.31868,20,4.33017,0.736549,4.21744,3.26207,5.71053,0.885104,-0.0363636
+sin_agua,rel_frontal_por_objeto,Relaciones frontales por objeto,11,3.10022,0.389918,3,2.54667,3.76374,20,2.9058,0.561979,2.74927,2.15172,4.03684,0.166639,-0.309091
+sin_agua,diversidad,Diversidad entre niveles del grupo,11,13.9883,,,,,20,13.9266,,,,,,

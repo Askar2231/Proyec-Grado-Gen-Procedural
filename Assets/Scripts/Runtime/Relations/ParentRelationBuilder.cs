@@ -1,8 +1,3 @@
-/// <summary>
-/// Convierte la jerarquía padre-hijo que ya captura SceneExporter
-/// (SceneObjectIR.parentId) en relaciones explícitas Parent/Child
-/// dentro de scene.relations.
-/// </summary>
 public class ParentRelationBuilder : IRelationBuilder
 {
     public void Build(SceneIR scene)
